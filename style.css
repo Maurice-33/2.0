@@ -41,9 +41,9 @@ img {
     width: 100%;
     background: rgba(17,17,17,0.9);
     backdrop-filter: blur(10px);
-    padding: 1rem 2rem; /* J'ai remis un padding pour les côtés */
-    display: flex; /* Utilisation de flexbox pour aligner les éléments */
-    justify-content: center; /* Centre le contenu de l'en-tête */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
     z-index: 1000;
 }
@@ -67,6 +67,7 @@ img {
     fill: var(--color-primary);
     stroke: black;
     stroke-width: 2;
+    /* L'étrier de frein reste fixe */
 }
 
 .disc {
@@ -77,39 +78,45 @@ img {
     animation: spin-and-brake 4s linear infinite;
 }
 
+/* Animation mise à jour pour le disque de frein.
+    Le disque tourne, chauffe (rouge), puis redevient normal.
+*/
 @keyframes spin-and-brake {
     0%   {
         transform: rotate(0deg);
         fill: #444;
     }
-    50%  {
+    45%  {
         transform: rotate(720deg);
         fill: #444;
     }
-    55%  {
+    50%  {
         transform: rotate(720deg);
-        fill: #990000;
+        fill: #ff2222; /* Début du rougissement */
+        box-shadow: 0 0 10px 5px rgba(255, 34, 34, 0.8);
+    }
+    55%  {
+        fill: #ff0000; /* Rouge vif au maximum */
+        box-shadow: 0 0 15px 7px rgba(255, 0, 0, 0.9);
     }
     60%  {
-        transform: rotate(720deg);
-        fill: #ff3300;
-        filter: drop-shadow(0 0 10px rgba(255, 51, 0, 0.8));
+        fill: #ff4500; /* Orange-rouge pour le refroidissement */
+        box-shadow: 0 0 10px 5px rgba(255, 69, 0, 0.7);
     }
-    80%  {
-        transform: rotate(720deg);
-        fill: #ff8000;
-        filter: none;
+    75% {
+        fill: #ff8c00; /* Orange pour la fin de la chauffe */
+        box-shadow: none;
     }
     100% {
         transform: rotate(720deg);
-        fill: #444;
+        fill: #444; /* Retour à la couleur de base */
     }
 }
 
 .nav {
     display: flex;
     gap: 2rem;
-    flex-grow: 1; /* Permet à la nav de prendre de l'espace pour le centrage */
+    flex-grow: 1;
     justify-content: center;
 }
 
@@ -186,7 +193,7 @@ img {
     }
 
     .main-header {
-        justify-content: space-between; /* Garde le logo et le hamburger séparés sur mobile */
+        justify-content: space-between;
     }
 
     .logo {
