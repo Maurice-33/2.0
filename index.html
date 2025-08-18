@@ -1,217 +1,109 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Motorsports - Beyond the Drive</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Motorsports - Beyond the Drive</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Ancre en haut de la page -->
-    <a id="top" href="#top"></a>
+  <!-- HEADER -->
+  <header class="main-header" id="main-header">
+    <a href="index.html" class="logo">
+      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <span class="logo-text">Apex Motorsports</span>
+    </a>
 
-    <!-- HEADER -->
-    <header class="main-header" id="main-header">
-        <a href="index.html" class="logo">
-            <!-- Logo SVG - une roue ou un engrenage stylisé -->
-            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="12" cy="12" r="3"></circle>
-                <line x1="12" y1="2" x2="12" y2="4"></line>
-                <line x1="12" y1="20" x2="12" y2="22"></line>
-                <line x1="20" y1="12" x2="22" y2="12"></line>
-                <line x1="2" y1="12" x2="4" y2="12"></line>
-                <line x1="19.07" y1="4.93" x2="17.66" y2="6.34"></line>
-                <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
-                <line x1="19.07" y1="19.07" x2="17.66" y2="17.66"></line>
-                <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
-            </svg>
-            <span class="logo-text">Apex Motorsports</span>
-        </a>
+    <div class="hamburger-menu" id="hamburger-menu">
+      <span></span><span></span><span></span>
+    </div>
 
-        <!-- Bouton Hamburger pour mobile -->
-        <div class="hamburger-menu" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <nav class="btn-group" id="site-nav">
+      <a href="#about" class="btn-secondary">À Propos</a>
+      <a href="#services" class="btn-secondary">Services</a>
+      <a href="#projects" class="btn-secondary">Projets</a>
+      <a href="#contact" class="btn-primary">Contact</a>
+    </nav>
+  </header>
 
-        <nav class="btn-group" id="site-nav">
-            <a href="#about" class="btn-secondary">À Propos</a>
-            <a href="#services" class="btn-secondary">Services</a>
-            <a href="#projects" class="btn-secondary">Projets</a>
-            <a href="#contact" class="btn-primary">Contact</a>
-        </nav>
-    </header>
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-content fade-in-up">
+      <h1>Libérez la puissance.<br>Redéfinissez la conduite.</h1>
+      <p>Performance • Personnalisation • Restauration</p>
+      <a href="#services" class="btn-primary">Découvrez nos services</a>
+    </div>
+  </section>
 
-    <!-- SECTION HERO - Avec une image de voiture en arrière-plan -->
-    <section class="hero-section">
-        <div class="hero-content fade-in-up">
-            <h1>Libérez la puissance.<br>Redéfinissez la conduite.</h1>
-            <p>Performance • Personnalisation • Restauration</p>
-            <a href="#services" class="btn-primary scroll-down-btn">Découvrez nos services</a>
-        </div>
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="about-section slide-up">
+      <h2>À Propos de Nous</h2>
+      <p>Spécialistes de la performance et de l'esthétique automobile, nous transformons votre véhicule...</p>
     </section>
 
-    <main>
-        <!-- À PROPOS -->
-        <section id="about" class="about-section slide-up">
-            <h2>À Propos de Nous</h2>
-            <div class="about-content">
-                <p>Spécialistes de la performance et de l'esthétique automobile, nous transformons votre véhicule en une œuvre d'art unique. Que ce soit pour des améliorations moteur, une personnalisation de l'intérieur ou une restauration minutieuse, notre équipe d'experts est passionnée par l'excellence.</p>
-                <p>Notre mission est de vous aider à atteindre le summum de l'ingénierie et du design. Chaque projet est traité avec la plus grande précision, garantissant un résultat qui dépasse toutes vos attentes.</p>
-            </div>
-        </section>
+    <!-- SERVICES -->
+    <section id="services" class="services-section fade-in">
+      <h2>Nos Services</h2>
+      <div class="cards">
+        <div class="card slide-up-slow">
+          <i class="fa-solid fa-gauge-high card-icon"></i>
+          <h3>Performance</h3>
+          <p>Optimisation moteur, échappements, suspension...</p>
+        </div>
+        <div class="card slide-up-slow">
+          <i class="fa-solid fa-paint-roller card-icon"></i>
+          <h3>Détail & Esthétique</h3>
+          <p>Protection céramique, film de protection...</p>
+        </div>
+        <div class="card slide-up-slow">
+          <i class="fa-solid fa-screwdriver-wrench card-icon"></i>
+          <h3>Restauration</h3>
+          <p>Restauration complète de véhicules classiques...</p>
+        </div>
+      </div>
+    </section>
 
-        <!-- MES SERVICES -->
-        <section id="services" class="services-section fade-in">
-            <h2>Nos Services</h2>
-            <div class="cards">
-                <div class="card slide-up-slow">
-                    <i class="fa-solid fa-gauge-high card-icon"></i>
-                    <h3>Performance</h3>
-                    <p>Optimisation du moteur, échappements sur mesure et suspension pour une conduite sportive.</p>
-                </div>
-                <div class="card slide-up-slow">
-                    <i class="fa-solid fa-paint-roller card-icon"></i>
-                    <h3>Détail & Esthétique</h3>
-                    <p>Protection céramique, film de protection et personnalisation de la carrosserie et de l'intérieur.</p>
-                </div>
-                <div class="card slide-up-slow">
-                    <i class="fa-solid fa-screwdriver-wrench card-icon"></i>
-                    <h3>Restauration</h3>
-                    <p>Restauration complète de véhicules classiques et de collection avec une attention aux détails.</p>
-                </div>
-            </div>
-        </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="projects-section fade-in">
+      <h2>Projets Récents</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item scale-in">
+          <img src="https://placehold.co/400x300/2f632d/ffffff?text=Projet+1" alt="Projet voiture 1">
+          <div class="item-overlay"><h3>Dodge Challenger R/T</h3></div>
+        </div>
+        <div class="portfolio-item scale-in">
+          <img src="https://placehold.co/400x300/006587/ffffff?text=Projet+2" alt="Projet voiture 2">
+          <div class="item-overlay"><h3>Porsche 911 Targa</h3></div>
+        </div>
+        <div class="portfolio-item scale-in">
+          <img src="https://placehold.co/400x300/96afb9/ffffff?text=Projet+3" alt="Projet voiture 3">
+          <div class="item-overlay"><h3>Ford Mustang GT</h3></div>
+        </div>
+      </div>
+    </section>
 
-        <!-- PROJETS -->
-        <section id="projects" class="projects-section fade-in">
-            <h2>Projets Récents</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item scale-in">
-                    <img src="https://placehold.co/400x300/35709a/ffffff?text=Projet+1" alt="Projet de voiture 1">
-                    <div class="item-overlay">
-                        <h3>Dodge Challenger R/T</h3>
-                        <p>Préparation moteur et carrosserie.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item scale-in">
-                    <img src="https://placehold.co/400x300/2d7761/ffffff?text=Projet+2" alt="Projet de voiture 2">
-                    <div class="item-overlay">
-                        <h3>Porsche 911 Targa</h3>
-                        <p>Restauration complète et peinture.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item scale-in">
-                    <img src="https://placehold.co/400x300/99b0a7/ffffff?text=Projet+3" alt="Projet de voiture 3">
-                    <div class="item-overlay">
-                        <h3>Ford Mustang GT</h3>
-                        <p>Ajout de kits de carrosserie et optimisation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section slide-up">
+      <h2>Contactez-nous</h2>
+      <form>
+        <input type="text" placeholder="Votre nom" required>
+        <input type="email" placeholder="Votre email" required>
+        <textarea placeholder="Votre message"></textarea>
+        <button type="submit" class="btn-primary">Envoyer</button>
+      </form>
+    </section>
+  </main>
 
-        <!-- CONTACT -->
-        <section id="contact" class="contact-section slide-up">
-            <h2>Contactez-nous</h2>
-            <form action="#" method="post">
-                <div>
-                    <label for="name">Votre nom :</label>
-                    <input type="text" id="name" name="name" placeholder="Votre nom" required>
-                </div>
+  <a href="#top" class="back-to-top" id="backToTop">&#8679;</a>
+  <footer><p>© 2025 Apex Motorsports - Tous droits réservés</p></footer>
 
-                <div>
-                    <label for="email">Votre email :</label>
-                    <input type="email" id="email" name="email" placeholder="Votre email" required>
-                </div>
-
-                <div>
-                    <label for="service">Type de demande :</label>
-                    <select id="service" name="service" required>
-                        <option value="" disabled selected>Choisissez une option</option>
-                        <option value="performance">Amélioration de la performance</option>
-                        <option value="detailing">Détail & Esthétique</option>
-                        <option value="restoration">Restauration</option>
-                        <option value="other">Autre</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="message">Message :</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary">Envoyer</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- Bouton remonter en haut -->
-    <a href="#top" class="back-to-top" id="backToTop">&#8679;</a>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Apex Motorsports - Tous droits réservés</p>
-    </footer>
-
-    <!-- JS pour la barre de navigation, le bouton "remonter en haut" et les effets de défilement -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Script pour la barre de navigation et le bouton "remonter en haut"
-            const header = document.getElementById('main-header');
-            const backToTopButton = document.getElementById("backToTop");
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                    backToTopButton.style.display = "block";
-                } else {
-                    header.classList.remove('scrolled');
-                    backToTopButton.style.display = "none";
-                }
-            });
-
-            // Script pour le menu hamburger
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navMenu = document.querySelector('.btn-group');
-
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('is-active');
-                navMenu.classList.toggle('is-open');
-            });
-
-            navMenu.addEventListener('click', () => {
-                hamburger.classList.remove('is-active');
-                navMenu.classList.remove('is-open');
-            });
-
-            // Effets de défilement
-            const observerOptions = {
-                root: null, // utilise le viewport comme conteneur
-                rootMargin: '0px',
-                threshold: 0.1 // 10% de l'élément doit être visible pour déclencher
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Cesse d'observer après l'animation
-                    }
-                });
-            }, observerOptions);
-
-            // Cible les sections à animer
-            const sections = document.querySelectorAll('.slide-up, .fade-in, .scale-in, .slide-up-slow');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
