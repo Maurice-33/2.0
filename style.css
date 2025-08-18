@@ -39,23 +39,55 @@ img {max-width: 100%; display: block;}
     gap: 10px;
 }
 
+/* Styles pour la nouvelle icône de disque de frein */
 .logo-icon {
-    font-size: 1.2em; /* Taille de l'icône par rapport au texte */
-    color: var(--color-primary);
-    animation: bounce-icon 2s infinite; /* Animation de rebond subtile */
+    width: 40px;
+    height: 40px;
 }
 
-@keyframes bounce-icon {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+.caliper {
+    fill: var(--color-primary);
+    stroke: black;
+    stroke-width: 2;
+}
+
+.disc {
+    fill: #444; /* Couleur de base du disque */
+    stroke: #333;
+    stroke-width: 2;
+    transform-origin: 50% 50%; /* Point de rotation */
+    animation: spin-and-brake 4s linear infinite;
+}
+
+@keyframes spin-and-brake {
+    0% {
+        transform: rotate(0deg);
+        fill: #444;
     }
-    40% {
-        transform: translateY(-5px);
+    50% {
+        transform: rotate(720deg);
+        fill: #444;
+    }
+    55% {
+        transform: rotate(720deg);
+        fill: #990000;
     }
     60% {
-        transform: translateY(-2px);
+        transform: rotate(720deg);
+        fill: #ff3300;
+        box-shadow: 0 0 10px 5px rgba(255, 51, 0, 0.8);
+    }
+    80% {
+        transform: rotate(720deg);
+        fill: #ff8000;
+        box-shadow: none;
+    }
+    100% {
+        transform: rotate(720deg);
+        fill: #444;
     }
 }
+
 
 .nav {
     display: flex;
@@ -76,6 +108,17 @@ img {max-width: 100%; display: block;}
 .hamburger {display: none; flex-direction: column; cursor: pointer; gap: .4rem;}
 .hamburger span {
     width: 25px; height: 3px; background: #fff; transition: all .3s;
+}
+.hamburger.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 @media(max-width: 768px) {
     .hamburger {display: flex;}
