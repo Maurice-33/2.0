@@ -14,7 +14,15 @@
     <!-- HEADER -->
     <header class="main-header" id="main-header">
         <a href="index.html" class="logo">
-            <i class="fas fa-car-side logo-icon"></i>
+            <!-- Nouvelle icône animée de disque de frein en SVG -->
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Disque de frein (le cercle qui tourne et rougit) -->
+                    <circle class="disc" cx="50" cy="50" r="40"/>
+                    <!-- Étrier de frein (la partie bleue) -->
+                    <path class="caliper" d="M10 50 Q20 30, 40 30 T70 30 Q80 40, 80 50 Q80 60, 70 70 T40 70 Q20 70, 10 50Z"/>
+                </svg>
+            </div>
             <span class="logo-text">Apex Motorsports</span>
         </a>
         <nav class="nav" id="main-nav">
@@ -153,23 +161,55 @@ img {max-width: 100%; display: block;}
     gap: 10px;
 }
 
+/* Styles pour la nouvelle icône de disque de frein */
 .logo-icon {
-    font-size: 1.2em; /* Taille de l'icône par rapport au texte */
-    color: var(--color-primary);
-    animation: bounce-icon 2s infinite; /* Animation de rebond subtile */
+    width: 40px;
+    height: 40px;
 }
 
-@keyframes bounce-icon {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+.caliper {
+    fill: var(--color-primary);
+    stroke: black;
+    stroke-width: 2;
+}
+
+.disc {
+    fill: #444; /* Couleur de base du disque */
+    stroke: #333;
+    stroke-width: 2;
+    transform-origin: 50% 50%; /* Point de rotation */
+    animation: spin-and-brake 4s linear infinite;
+}
+
+@keyframes spin-and-brake {
+    0% {
+        transform: rotate(0deg);
+        fill: #444;
     }
-    40% {
-        transform: translateY(-5px);
+    50% {
+        transform: rotate(720deg);
+        fill: #444;
+    }
+    55% {
+        transform: rotate(720deg);
+        fill: #990000;
     }
     60% {
-        transform: translateY(-2px);
+        transform: rotate(720deg);
+        fill: #ff3300;
+        box-shadow: 0 0 10px 5px rgba(255, 51, 0, 0.8);
+    }
+    80% {
+        transform: rotate(720deg);
+        fill: #ff8000;
+        box-shadow: none;
+    }
+    100% {
+        transform: rotate(720deg);
+        fill: #444;
     }
 }
+
 
 .nav {
     display: flex;
