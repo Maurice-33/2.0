@@ -10,9 +10,18 @@
 </head>
 <body>
 
-  <!-- HEADER avec logo centré -->
-  <header class="main-header">
-    <div class="logo animated-logo">Apex Motorsports</div>
+  <!-- HEADER -->
+  <header class="main-header" id="main-header">
+    <a href="index.html" class="logo">Apex Motorsports</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#about">À Propos</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact" class="btn-primary">Contact</a>
+    </nav>
   </header>
 
   <!-- HERO -->
@@ -24,23 +33,15 @@
     </div>
   </section>
 
-  <!-- NAVIGATION SECONDAIRE -->
-  <nav class="sub-nav">
-    <a href="#about">À Propos</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projets</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
   <main>
     <!-- ABOUT -->
-    <section id="about" class="section">
+    <section id="about" class="about section">
       <h2>À propos</h2>
       <p>Inspirés par l’univers Porsche Exclusive, nous créons des véhicules uniques, sur-mesure, avec des finitions haut de gamme et des performances de pointe.</p>
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="section">
+    <section id="services" class="services section">
       <h2>Nos Services</h2>
       <div class="cards">
         <div class="card">
@@ -59,7 +60,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="section">
+    <section id="projects" class="projects section">
       <h2>Projets Récents</h2>
       <div class="grid">
         <div class="project">
@@ -78,7 +79,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section">
+    <section id="contact" class="contact section">
       <h2>Contact</h2>
       <form>
         <input type="text" placeholder="Nom" required>
