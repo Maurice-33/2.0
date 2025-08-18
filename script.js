@@ -1,20 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll(".sub-nav a");
+  const hamburger = document.getElementById("hamburger");
+  const nav = document.getElementById("nav");
 
-  // Scroll spy : active link
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach(sec => {
-      const secTop = sec.offsetTop - 120;
-      if (scrollY >= secTop) current = sec.getAttribute("id");
-    });
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("is-open");
+  });
 
-    navLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes(current)) {
-        link.classList.add("active");
+  // Animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
       }
     });
+  }, {threshold: 0.2});
+
+  document.querySelectorAll(".section, .card, .project").forEach(el => {
+    el.classList.add("hidden");
+    observer.observe(el);
   });
 });
