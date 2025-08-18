@@ -3,107 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Motorsports - Beyond the Drive</title>
+  <title>Apex Motorsports - Élégance & Performance</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="main-header" id="main-header">
-    <a href="index.html" class="logo">
-      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"></circle>
-        <circle cx="12" cy="12" r="3"></circle>
-      </svg>
-      <span class="logo-text">Apex Motorsports</span>
-    </a>
-
-    <div class="hamburger-menu" id="hamburger-menu">
+    <a href="index.html" class="logo">Apex Motorsports</a>
+    <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-
-    <nav class="btn-group" id="site-nav">
-      <a href="#about" class="btn-secondary">À Propos</a>
-      <a href="#services" class="btn-secondary">Services</a>
-      <a href="#projects" class="btn-secondary">Projets</a>
+    <nav class="nav" id="nav">
+      <a href="#about">À Propos</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projets</a>
       <a href="#contact" class="btn-primary">Contact</a>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="hero-section">
-    <div class="hero-content fade-in-up">
-      <h1>Libérez la puissance.<br>Redéfinissez la conduite.</h1>
-      <p>Performance • Personnalisation • Restauration</p>
-      <a href="#services" class="btn-primary">Découvrez nos services</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Élégance et Performance</h1>
+      <p>Redéfinir l’expérience automobile, alliant puissance et raffinement.</p>
+      <a href="#services" class="btn-primary">Découvrir</a>
     </div>
   </section>
 
   <main>
     <!-- ABOUT -->
-    <section id="about" class="about-section slide-up">
-      <h2>À Propos de Nous</h2>
-      <p>Spécialistes de la performance et de l'esthétique automobile, nous transformons votre véhicule...</p>
+    <section id="about" class="about section">
+      <h2>À propos</h2>
+      <p>Inspirés par l’univers Porsche Exclusive, nous créons des véhicules uniques, sur-mesure, avec des finitions haut de gamme et des performances de pointe.</p>
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="services-section fade-in">
+    <section id="services" class="services section">
       <h2>Nos Services</h2>
       <div class="cards">
-        <div class="card slide-up-slow">
-          <i class="fa-solid fa-gauge-high card-icon"></i>
+        <div class="card">
           <h3>Performance</h3>
-          <p>Optimisation moteur, échappements, suspension...</p>
+          <p>Optimisation moteur et réglages sur mesure.</p>
         </div>
-        <div class="card slide-up-slow">
-          <i class="fa-solid fa-paint-roller card-icon"></i>
-          <h3>Détail & Esthétique</h3>
-          <p>Protection céramique, film de protection...</p>
+        <div class="card">
+          <h3>Personnalisation</h3>
+          <p>Peinture exclusive, intérieur cuir, détails sur mesure.</p>
         </div>
-        <div class="card slide-up-slow">
-          <i class="fa-solid fa-screwdriver-wrench card-icon"></i>
+        <div class="card">
           <h3>Restauration</h3>
-          <p>Restauration complète de véhicules classiques...</p>
+          <p>Restauration complète de véhicules de prestige.</p>
         </div>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="projects-section fade-in">
+    <section id="projects" class="projects section">
       <h2>Projets Récents</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item scale-in">
-          <img src="https://placehold.co/400x300/2f632d/ffffff?text=Projet+1" alt="Projet voiture 1">
-          <div class="item-overlay"><h3>Dodge Challenger R/T</h3></div>
+      <div class="grid">
+        <div class="project">
+          <img src="https://placehold.co/500x350/111111/fff?text=Projet+1" alt="">
+          <div class="overlay"><h3>Porsche 911</h3></div>
         </div>
-        <div class="portfolio-item scale-in">
-          <img src="https://placehold.co/400x300/006587/ffffff?text=Projet+2" alt="Projet voiture 2">
-          <div class="item-overlay"><h3>Porsche 911 Targa</h3></div>
+        <div class="project">
+          <img src="https://placehold.co/500x350/222222/fff?text=Projet+2" alt="">
+          <div class="overlay"><h3>Ferrari Roma</h3></div>
         </div>
-        <div class="portfolio-item scale-in">
-          <img src="https://placehold.co/400x300/96afb9/ffffff?text=Projet+3" alt="Projet voiture 3">
-          <div class="item-overlay"><h3>Ford Mustang GT</h3></div>
+        <div class="project">
+          <img src="https://placehold.co/500x350/333333/fff?text=Projet+3" alt="">
+          <div class="overlay"><h3>Mustang GT</h3></div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact-section slide-up">
-      <h2>Contactez-nous</h2>
+    <section id="contact" class="contact section">
+      <h2>Contact</h2>
       <form>
-        <input type="text" placeholder="Votre nom" required>
-        <input type="email" placeholder="Votre email" required>
-        <textarea placeholder="Votre message"></textarea>
-        <button type="submit" class="btn-primary">Envoyer</button>
+        <input type="text" placeholder="Nom" required>
+        <input type="email" placeholder="Email" required>
+        <textarea rows="4" placeholder="Message"></textarea>
+        <button class="btn-primary">Envoyer</button>
       </form>
     </section>
   </main>
 
-  <a href="#top" class="back-to-top" id="backToTop">&#8679;</a>
-  <footer><p>© 2025 Apex Motorsports - Tous droits réservés</p></footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Apex Motorsports. Tous droits réservés.</p>
+  </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
