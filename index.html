@@ -11,32 +11,32 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER avec logo -->
     <header class="main-header" id="main-header">
         <a href="index.html" class="logo">
-            <!-- Nouvelle icône animée de disque de frein en SVG -->
+            <!-- Logo animé (disque de frein) -->
             <div class="logo-icon">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Disque de frein (le cercle qui tourne et rougit) -->
                     <circle class="disc" cx="50" cy="50" r="40"/>
-                    <!-- Étrier de frein (la partie bleue) -->
                     <path class="caliper" d="M10 50 Q20 30, 40 30 T70 30 Q80 40, 80 50 Q80 60, 70 70 T40 70 Q20 70, 10 50Z"/>
                 </svg>
             </div>
             <span class="logo-text">Apex Motorsports</span>
         </a>
-        <nav class="nav" id="main-nav">
-            <a href="#about" class="nav-link">À Propos</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#projects" class="nav-link">Projets</a>
-            <a href="#contact" class="btn-primary">Contact</a>
-        </nav>
         <div class="hamburger" id="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </header>
+
+    <!-- BARRE DE NAVIGATION sous le logo -->
+    <nav class="nav-bar" id="main-nav">
+        <a href="#about" class="nav-link">À Propos</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#projects" class="nav-link">Projets</a>
+        <a href="#contact" class="btn-primary">Contact</a>
+    </nav>
 
     <!-- HERO SECTION -->
     <section class="hero">
@@ -46,13 +46,15 @@
         </div>
     </section>
 
-    <!-- SECTIONS DE CONTENU -->
+    <!-- SECTIONS -->
     <main>
+        <!-- À propos -->
         <section id="about" class="about section">
             <h2>À propos</h2>
             <p>Inspirés par l’univers Porsche Exclusive, nous créons des véhicules uniques, sur-mesure, avec des finitions haut de gamme et des performances de pointe.</p>
         </section>
 
+        <!-- Services -->
         <section id="services" class="services section">
             <h2>Nos Services</h2>
             <div class="cards">
@@ -71,6 +73,7 @@
             </div>
         </section>
 
+        <!-- Projets -->
         <section id="projects" class="projects section">
             <h2>Projets Récents</h2>
             <div class="grid">
@@ -89,6 +92,7 @@
             </div>
         </section>
 
+        <!-- Contact -->
         <section id="contact" class="contact section">
             <h2>Contact</h2>
             <form>
@@ -105,191 +109,7 @@
         <p>© 2025 Apex Motorsports. Tous droits réservés.</p>
     </footer>
 
-    <!-- JS pour le menu mobile -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.getElementById('hamburger-menu');
-            const nav = document.getElementById('main-nav');
-            
-            hamburger.addEventListener('click', () => {
-                nav.classList.toggle('is-open');
-                hamburger.classList.toggle('is-active');
-            });
-        });
-    </script>
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
 </body>
 </html>
-```css
-/* Fichier style.css */
-/* -------------------- VARIABLES -------------------- */
-:root {
-    --color-dark: #111111;
-    --color-light: #f8f8f8;
-    --color-primary: #006587; /* Touche sportive */
-    --color-grey: #a2af9f;
-    --color-accent: #96afb9;
-    --font-main: 'Inter', sans-serif;
-    --font-title: 'Poppins', sans-serif;
-}
-
-/* -------------------- RESET -------------------- */
-* {margin: 0; padding: 0; box-sizing: border-box;}
-body {
-    font-family: var(--font-main);
-    color: var(--color-light);
-    background: var(--color-dark);
-    line-height: 1.6;
-}
-a {text-decoration: none; color: inherit;}
-img {max-width: 100%; display: block;}
-
-/* -------------------- HEADER -------------------- */
-.main-header {
-    position: fixed; top: 0; width: 100%;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(17,17,17,0.9);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-family: var(--font-title);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Styles pour la nouvelle icône de disque de frein */
-.logo-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.caliper {
-    fill: var(--color-primary);
-    stroke: black;
-    stroke-width: 2;
-}
-
-.disc {
-    fill: #444; /* Couleur de base du disque */
-    stroke: #333;
-    stroke-width: 2;
-    transform-origin: 50% 50%; /* Point de rotation */
-    animation: spin-and-brake 4s linear infinite;
-}
-
-@keyframes spin-and-brake {
-    0% {
-        transform: rotate(0deg);
-        fill: #444;
-    }
-    50% {
-        transform: rotate(720deg);
-        fill: #444;
-    }
-    55% {
-        transform: rotate(720deg);
-        fill: #990000;
-    }
-    60% {
-        transform: rotate(720deg);
-        fill: #ff3300;
-        box-shadow: 0 0 10px 5px rgba(255, 51, 0, 0.8);
-    }
-    80% {
-        transform: rotate(720deg);
-        fill: #ff8000;
-        box-shadow: none;
-    }
-    100% {
-        transform: rotate(720deg);
-        fill: #444;
-    }
-}
-
-
-.nav {
-    display: flex;
-    gap: 2rem;
-    flex-grow: 1; /* Permet à la nav de prendre de l'espace */
-    justify-content: center; /* Centre les éléments de la nav */
-}
-
-.nav a {font-weight: 500; transition: color .3s;}
-.nav a:hover {color: var(--color-primary);}
-.btn-primary {
-    background: var(--color-primary); color: #fff; padding: .6rem 1.2rem;
-    border-radius: 50px; transition: background .3s;
-}
-.btn-primary:hover {background: #004d64;}
-
-/* -------------------- HAMBURGER -------------------- */
-.hamburger {display: none; flex-direction: column; cursor: pointer; gap: .4rem;}
-.hamburger span {
-    width: 25px; height: 3px; background: #fff; transition: all .3s;
-}
-@media(max-width: 768px) {
-    .hamburger {display: flex;}
-    .nav {position: absolute; top: 70px; right: 0; flex-direction: column;
-        background: #000; padding: 1rem; display: none;}
-    .nav.is-open {display: flex;}
-    .main-header {
-        justify-content: space-between; /* Garde le logo et le hamburger séparés sur mobile */
-    }
-    .logo {
-        flex-grow: 0;
-    }
-}
-
-/* -------------------- HERO -------------------- */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.7)),
-                url("[https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80](https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80)") center/cover;
-    display: flex; justify-content: center; align-items: center;
-    text-align: center; color: #fff;
-}
-.hero h1 {font-family: var(--font-title); font-size: 3rem; margin-bottom: 1rem;}
-.hero p {margin-bottom: 2rem; font-size: 1.2rem; color: var(--color-accent);}
-
-/* -------------------- SECTIONS -------------------- */
-.section {padding: 5rem 2rem; text-align: center;}
-.section h2 {font-family: var(--font-title); margin-bottom: 2rem; font-size: 2rem;}
-
-/* About */
-.about p {max-width: 800px; margin: auto; color: var(--color-grey);}
-
-/* Services */
-.cards {display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem;}
-.card {
-    background: #1a1a1a; padding: 2rem; border-radius: 10px;
-    transition: transform .3s, box-shadow .3s;
-}
-.card:hover {transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,.6);}
-.card h3 {margin-bottom: 1rem; color: var(--color-primary);}
-
-/* Projects */
-.grid {display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem;}
-.project {position: relative; overflow: hidden; border-radius: 10px;}
-.project img {transition: transform .5s;}
-.project:hover img {transform: scale(1.1);}
-.overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: rgba(0,0,0,.7); padding: 1rem;
-    opacity: 0; transition: opacity .3s;
-}
-.project:hover .overlay {opacity: 1;}
-
-/* Contact */
-form {max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem;}
-input, textarea, select {
-    padding: .8rem; border: none; border-radius: 8px;
-    background: #222; color: #fff;
-}
-button {cursor: pointer; border: none;}
-
-/* Footer */
-footer {padding: 2rem; text-align: center; font-size: .9rem; color: var(--color-grey);}
