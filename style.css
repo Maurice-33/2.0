@@ -1,4 +1,3 @@
-/* Fichier style.css */
 /* -------------------- VARIABLES -------------------- */
 :root {
     --color-dark: #111111;
@@ -9,9 +8,8 @@
     --font-main: 'Inter', sans-serif;
     --font-title: 'Poppins', sans-serif;
 
-    --logo-size: 50px; /* taille du logo */
-    --disc-diam: 40px; /* taille disque */
-    --cycle: 6s;
+    --logo-size: 60px;   /* taille du logo */
+    --cycle: 6s;         /* durée d'une rotation complète */
 }
 
 /* -------------------- RESET -------------------- */
@@ -39,18 +37,13 @@ img {
 }
 
 /* -------- Animation du logo disque -------- */
-:root {
-  --logo-size: 60px;
-  --cycle: 6s;
-}
-
 .disc-svg {
   width: var(--logo-size);
   height: var(--logo-size);
 }
 
 .disc {
-  transform-origin: 60px 60px;
+  transform-origin: 60px 60px; /* centre du SVG */
   animation: rotateDisc var(--cycle) linear infinite;
 }
 
@@ -58,26 +51,22 @@ img {
   opacity: 0;
   animation: heatPulse var(--cycle) linear infinite;
   fill: url(#heatGradient);
-}
-
-/* Dégradé radial intégré via <defs> dans le SVG */
-svg defs {
   pointer-events: none;
 }
 
 @keyframes rotateDisc {
-  0% { transform: rotate(0turn); }
-  40% { transform: rotate(4turn); }
-  65% { transform: rotate(4.3turn); }
+  0%   { transform: rotate(0turn); }
+  40%  { transform: rotate(4turn); }
+  65%  { transform: rotate(4.3turn); }
   100% { transform: rotate(4.35turn); }
 }
 
 @keyframes heatPulse {
   0%,35% { opacity: 0; }
-  45% { opacity: 1; }
-  65% { opacity: 0.6; }
-  85% { opacity: 0.2; }
-  100% { opacity: 0; }
+  45%    { opacity: 1; }
+  65%    { opacity: 0.6; }
+  85%    { opacity: 0.2; }
+  100%   { opacity: 0; }
 }
 
 /* -------------------- HEADER -------------------- */
@@ -106,68 +95,9 @@ svg defs {
 .logo-icon {
     width: var(--logo-size);
     height: var(--logo-size);
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* ------ Logo disque animé ------ */
-.disc-logo {
-    width: var(--logo-size);
-    height: var(--logo-size);
-    position: relative;
-}
-
-.base img,
-.disc-layer img {
-    width: var(--logo-size);
-    height: var(--logo-size);
-    object-fit: contain;
-}
-
-.disc-cut {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: var(--disc-diam);
-    height: var(--disc-diam);
-    border-radius: 50%;
-    background: rgba(17,17,17,0.9);
-}
-
-.disc-img {
-    clip-path: circle(calc(var(--disc-diam)/2) at 50% 50%);
-    transform-origin: center;
-    animation: rotateDisc var(--cycle) linear infinite;
-}
-
-.heat {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: var(--disc-diam);
-    height: var(--disc-diam);
-    border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(255,136,0,.9), rgba(255,0,0,.6) 60%, rgba(255,0,0,0) 80%);
-    opacity: 0;
-    animation: heatPulse var(--cycle) linear infinite;
-    pointer-events: none;
-}
-
-@keyframes rotateDisc {
-    0% { transform: rotate(0turn); }
-    40% { transform: rotate(4turn); }
-    65% { transform: rotate(4.3turn); }
-    100% { transform: rotate(4.35turn); }
-}
-
-@keyframes heatPulse {
-    0%,35% { opacity: 0; }
-    45% { opacity: 1; }
-    65% { opacity: .6; }
-    85% { opacity: .2; }
-    100% { opacity: 0; }
 }
 
 /* -------------------- NAVIGATION -------------------- */
