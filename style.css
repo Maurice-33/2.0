@@ -10,7 +10,7 @@
 –color-error: #ff6b6b;
 –color-success: #51cf66;
 
-```
+
 /* Typographie */
 --font-main: 'Inter', sans-serif;
 --font-title: 'Poppins', sans-serif;
@@ -40,7 +40,7 @@
 --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
 --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
 --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.6);
-```
+
 
 }
 
@@ -652,7 +652,7 @@ justify-content: space-between;
 padding: var(–spacing-md);
 }
 
-```
+
 .hamburger {
     display: flex;
 }
@@ -710,7 +710,7 @@ padding: var(–spacing-md);
 .social-links {
     justify-content: center;
 }
-```
+
 
 }
 
@@ -719,7 +719,7 @@ padding: var(–spacing-md);
 font-size: 2rem;
 }
 
-```
+
 .hero p {
     font-size: 1rem;
 }
@@ -742,7 +742,7 @@ font-size: 2rem;
     bottom: var(--spacing-md);
     right: var(--spacing-md);
 }
-```
+
 
 }
 
@@ -800,7 +800,7 @@ animation-iteration-count: 1 !important;
 transition-duration: 0.01ms !important;
 }
 
-```
+
 .disc {
     animation: none;
 }
@@ -809,7 +809,7 @@ transition-duration: 0.01ms !important;
     animation: none;
     opacity: 0;
 }
-```
+
 
 }
 
@@ -822,15 +822,15 @@ transition-duration: 0.01ms !important;
 display: none;
 }
 
-```
+
 body {
     background: white;
     color: black;
 }
 
 .section {
-    padding: 1rem 0;
+    padding: 1rem 0;
 }
-```
+
 
 }
