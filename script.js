@@ -1,104 +1,89 @@
-/**
- * Fichier JavaScript pour gérer les interactions de la page d'accueil.
- * Il inclut :
- * 1. La gestion du défilement pour le menu principal et le bouton de retour en haut.
- * 2. La logique du menu "hamburger" pour les appareils mobiles.
- * 3. Les animations des éléments qui apparaissent au défilement.
- * 4. La mise en évidence du lien de navigation actif en fonction de la section visible.
- */
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector("#main-header");
+  const nav = document.querySelector("#main-nav");
+  const hamburger = document.querySelector("#hamburger-menu");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const scrollToTopBtn = document.querySelector("#scroll-to-top");
+  const form = document.querySelector("form");
 
-document.addEventListener("DOMContentLoaded", () => {
-    // --- Éléments du DOM ---
-    const mainHeader = document.querySelector(".main-header");
-    const navLinks = document.querySelectorAll(".nav-link");
-    const hamburger = document.querySelector(".hamburger");
-    const navBar = document.querySelector(".nav-bar");
-    const sections = document.querySelectorAll(".section");
-    const scrollToTopBtn = document.querySelector(".scroll-to-top");
-    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+  // Scroll header effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.add("show");
+    } else {
+      scrollToTopBtn.classList.remove("show");
+    }
+  });
 
-    // --- Gestionnaire d'événement de défilement (scroll) ---
-    window.addEventListener("scroll", () => {
-        // Ajoute ou retire la classe 'scrolled' du header
-        if (window.scrollY > 50) {
-            mainHeader.classList.add("scrolled");
-        } else {
-            mainHeader.classList.remove("scrolled");
-        }
-
-        // Affiche ou masque le bouton "scroll to top"
-        if (window.scrollY > 300) {
-            scrollToTopBtn.classList.add("show");
-        } else {
-            scrollToTopBtn.classList.remove("show");
-        }
-
-        // Gère la classe 'is-active' pour les liens de navigation
-        updateActiveLink();
-    });
-
-    // --- Logique du menu "hamburger" ---
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("is-active");
-        navBar.classList.toggle("is-open");
-    });
-
-    // Ferme le menu mobile lors du clic sur un lien
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            hamburger.classList.remove("is-active");
-            navBar.classList.remove("is-open");
+  // Smooth scroll
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 80,
+          behavior: "smooth"
         });
+      }
+      nav.classList.remove("is-open");
+      hamburger.classList.remove("is-active");
     });
+  });
 
-    // --- Bouton "Retour en haut" ---
-    if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
+  // Scroll to top
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Hamburger menu
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("is-active");
+    nav.classList.toggle("is-open");
+  });
+
+  // Form validation
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isValid = true;
+
+    const nom = document.getElementById("nom");
+    const email = document.getElementById("email");
+    const message = document.getElementById("message");
+
+    const nomError = document.getElementById("nom-error");
+    const emailError = document.getElementById("email-error");
+    const messageError = document.getElementById("message-error");
+    const formMessage = form.querySelector(".form-message");
+
+    nomError.textContent = "";
+    emailError.textContent = "";
+    messageError.textContent = "";
+    formMessage.textContent = "";
+
+    if (nom.value.trim() === "") {
+      nomError.textContent = "Veuillez entrer votre nom.";
+      isValid = false;
+    }
+    if (!email.value.includes("@")) {
+      emailError.textContent = "Veuillez entrer un email valide.";
+      isValid = false;
+    }
+    if (message.value.trim().length < 10) {
+      messageError.textContent = "Le message doit contenir au moins 10 caractères.";
+      isValid = false;
     }
 
-    // --- Animations au défilement (IntersectionObserver) ---
-    const observerOptions = {
-        root: null, // L'élément racine est le viewport
-        rootMargin: "0px",
-        threshold: 0.1 // 10% de l'élément doit être visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("animate");
-                observer.unobserve(entry.target); // Arrête d'observer l'élément une fois qu'il est animé
-            }
-        });
-    }, observerOptions);
-
-    // Initialise l'observation des éléments animés
-    animatedElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    // --- Mise en évidence du lien de navigation actif ---
-    const updateActiveLink = () => {
-        let currentSectionId = "";
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - mainHeader.offsetHeight;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("is-active");
-            if (link.getAttribute("href") === `#${currentSectionId}`) {
-                link.classList.add("is-active");
-            }
-        });
-    };
+    if (isValid) {
+      formMessage.textContent = "Merci pour votre message !";
+      formMessage.style.color = "green";
+      form.reset();
+    }
+  });
 });
