@@ -8,6 +8,10 @@
     --color-accent: #96afb9;
     --font-main: 'Inter', sans-serif;
     --font-title: 'Poppins', sans-serif;
+
+    --logo-size: 50px; /* taille du logo */
+    --disc-diam: 40px; /* taille disque */
+    --cycle: 6s;
 }
 
 /* -------------------- RESET -------------------- */
@@ -57,70 +61,82 @@ img {
     color: #fff;
 }
 
-/* Icône disque + caliper */
 .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.caliper {
-    fill: var(--color-primary);
-    stroke: black;
-    stroke-width: 2;
-    /* L'étrier de frein reste fixe */
+/* ------ Logo disque animé ------ */
+.disc-logo {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    position: relative;
 }
 
-.disc {
-    fill: #444;
-    stroke: #333;
-    stroke-width: 2;
-    transform-origin: 50% 50%;
-    animation: spin-and-brake 4s linear infinite;
+.base img,
+.disc-layer img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    object-fit: contain;
 }
 
-/* Animation mise à jour pour le disque de frein.
-    Le disque tourne, chauffe (rouge), puis redevient normal.
-*/
-@keyframes spin-and-brake {
-    0%   {
-        transform: rotate(0deg);
-        fill: #444;
-    }
-    45%  {
-        transform: rotate(720deg);
-        fill: #444;
-    }
-    50%  {
-        transform: rotate(720deg);
-        fill: #ff2222; /* Début du rougissement */
-        box-shadow: 0 0 10px 5px rgba(255, 34, 34, 0.8);
-    }
-    55%  {
-        fill: #ff0000; /* Rouge vif au maximum */
-        box-shadow: 0 0 15px 7px rgba(255, 0, 0, 0.9);
-    }
-    60%  {
-        fill: #ff4500; /* Orange-rouge pour le refroidissement */
-        box-shadow: 0 0 10px 5px rgba(255, 69, 0, 0.7);
-    }
-    75% {
-        fill: #ff8c00; /* Orange pour la fin de la chauffe */
-        box-shadow: none;
-    }
-    100% {
-        transform: rotate(720deg);
-        fill: #444; /* Retour à la couleur de base */
-    }
+.disc-cut {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: var(--disc-diam);
+    height: var(--disc-diam);
+    border-radius: 50%;
+    background: rgba(17,17,17,0.9);
 }
 
-.nav {
+.disc-img {
+    clip-path: circle(calc(var(--disc-diam)/2) at 50% 50%);
+    transform-origin: center;
+    animation: rotateDisc var(--cycle) linear infinite;
+}
+
+.heat {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: var(--disc-diam);
+    height: var(--disc-diam);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255,136,0,.9), rgba(255,0,0,.6) 60%, rgba(255,0,0,0) 80%);
+    opacity: 0;
+    animation: heatPulse var(--cycle) linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateDisc {
+    0% { transform: rotate(0turn); }
+    40% { transform: rotate(4turn); }
+    65% { transform: rotate(4.3turn); }
+    100% { transform: rotate(4.35turn); }
+}
+
+@keyframes heatPulse {
+    0%,35% { opacity: 0; }
+    45% { opacity: 1; }
+    65% { opacity: .6; }
+    85% { opacity: .2; }
+    100% { opacity: 0; }
+}
+
+/* -------------------- NAVIGATION -------------------- */
+.nav-bar {
     display: flex;
     gap: 2rem;
     flex-grow: 1;
     justify-content: center;
 }
 
-.nav a {
+.nav-link {
     color: #fff;
     font-weight: 500;
     text-decoration: none;
@@ -128,8 +144,8 @@ img {
     transition: color .3s, border-bottom .3s;
 }
 
-.nav a:hover,
-.nav a.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--color-primary);
     border-bottom: 2px solid var(--color-primary);
 }
@@ -174,11 +190,9 @@ img {
 }
 
 @media(max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
+    .hamburger { display: flex; }
 
-    .nav {
+    .nav-bar {
         position: absolute;
         top: 70px;
         right: 0;
@@ -188,17 +202,11 @@ img {
         display: none;
     }
 
-    .nav.is-open {
-        display: flex;
-    }
+    .nav-bar.is-open { display: flex; }
 
-    .main-header {
-        justify-content: space-between;
-    }
+    .main-header { justify-content: space-between; }
 
-    .logo {
-        flex-grow: 0;
-    }
+    .logo { flex-grow: 0; }
 }
 
 /* -------------------- HERO -------------------- */
@@ -281,13 +289,9 @@ img {
     border-radius: 10px;
 }
 
-.project img {
-    transition: transform .5s;
-}
+.project img { transition: transform .5s; }
 
-.project:hover img {
-    transform: scale(1.1);
-}
+.project:hover img { transform: scale(1.1); }
 
 .overlay {
     position: absolute;
@@ -300,9 +304,7 @@ img {
     transition: opacity .3s;
 }
 
-.project:hover .overlay {
-    opacity: 1;
-}
+.project:hover .overlay { opacity: 1; }
 
 /* Contact */
 form {
@@ -321,10 +323,7 @@ input, textarea, select {
     color: #fff;
 }
 
-button {
-    cursor: pointer;
-    border: none;
-}
+button { cursor: pointer; border: none; }
 
 /* Footer */
 footer {
