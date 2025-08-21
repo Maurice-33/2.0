@@ -1,22 +1,18 @@
+// Fichier script.js
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.getElementById("nav");
+    const hamburger = document.getElementById("hamburger-menu");
+    const nav = document.getElementById("main-nav");
 
-  hamburger.addEventListener("click", () => {
-    nav.classList.toggle("is-open");
-  });
-
-  // Animation on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("is-active");
+        nav.classList.toggle("is-open");
     });
-  }, {threshold: 0.2});
 
-  document.querySelectorAll(".section, .card, .project").forEach(el => {
-    el.classList.add("hidden");
-    observer.observe(el);
-  });
+    // Fermer menu après clic sur un lien
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("is-active");
+            nav.classList.remove("is-open");
+        });
+    });
 });
