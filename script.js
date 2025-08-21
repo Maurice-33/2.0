@@ -8,16 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Scroll header effect
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-    if (window.scrollY > 300) {
-      scrollToTopBtn.classList.add("show");
-    } else {
-      scrollToTopBtn.classList.remove("show");
-    }
+    header.classList.toggle("scrolled", window.scrollY > 50);
+    scrollToTopBtn.classList.toggle("show", window.scrollY > 300);
   });
 
   // Smooth scroll
@@ -28,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
         window.scrollTo({
-          top: targetSection.offsetTop - 80,
+          top: targetSection.offsetTop - 70,
           behavior: "smooth"
         });
       }
