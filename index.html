@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- Fichier index.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,21 +14,22 @@
     <!-- HEADER avec logo -->
     <header class="main-header" id="main-header">
         <a href="index.html" class="logo">
-            <!-- Logo animé SVG (disque de frein) -->
+            <!-- Logo animé SVG -->
             <div class="logo-icon">
-                <svg class="disc-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <svg class="disc-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+                    <defs>
+                        <radialGradient id="heatGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="orange" stop-opacity="0.9"/>
+                            <stop offset="60%" stop-color="red" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="transparent"/>
+                        </radialGradient>
+                    </defs>
                     <!-- Disque -->
-                    <circle class="disc" cx="60" cy="60" r="45" fill="#bbb" stroke="#888" stroke-width="4"/>
-                    <!-- Trous de ventilation -->
-                    <circle cx="60" cy="30" r="4" fill="#222"/>
-                    <circle cx="85" cy="45" r="4" fill="#222"/>
-                    <circle cx="90" cy="75" r="4" fill="#222"/>
-                    <circle cx="70" cy="95" r="4" fill="#222"/>
-                    <circle cx="40" cy="90" r="4" fill="#222"/>
-                    <circle cx="30" cy="60" r="4" fill="#222"/>
-                    <circle cx="45" cy="35" r="4" fill="#222"/>
+                    <circle class="disc" cx="60" cy="60" r="40" stroke="#ccc" stroke-width="10" fill="none"/>
                     <!-- Halo chaleur -->
-                    <circle class="heat" cx="60" cy="60" r="45"/>
+                    <circle class="heat" cx="60" cy="60" r="38"/>
+                    <!-- Étrier -->
+                    <rect x="80" y="40" width="20" height="40" rx="5" ry="5" fill="#006587"/>
                 </svg>
             </div>
             <span class="logo-text">Apex Motorsports</span>
@@ -58,11 +59,13 @@
 
     <!-- MAIN -->
     <main>
+        <!-- À propos -->
         <section id="about" class="about section">
             <h2>À propos</h2>
             <p>Inspirés par l’univers Porsche Exclusive, nous créons des véhicules uniques, sur-mesure, avec des finitions haut de gamme et des performances de pointe.</p>
         </section>
 
+        <!-- Services -->
         <section id="services" class="services section">
             <h2>Nos Services</h2>
             <div class="cards">
@@ -81,6 +84,7 @@
             </div>
         </section>
 
+        <!-- Projets -->
         <section id="projects" class="projects section">
             <h2>Projets Récents</h2>
             <div class="grid">
@@ -99,6 +103,7 @@
             </div>
         </section>
 
+        <!-- Contact -->
         <section id="contact" class="contact section">
             <h2>Contact</h2>
             <form>
@@ -115,6 +120,7 @@
         <p>© 2025 Apex Motorsports. Tous droits réservés.</p>
     </footer>
 
+    <!-- SCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
