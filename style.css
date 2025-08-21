@@ -38,6 +38,48 @@ img {
     display: block;
 }
 
+/* -------- Animation du logo disque -------- */
+:root {
+  --logo-size: 60px;
+  --cycle: 6s;
+}
+
+.disc-svg {
+  width: var(--logo-size);
+  height: var(--logo-size);
+}
+
+.disc {
+  transform-origin: 60px 60px;
+  animation: rotateDisc var(--cycle) linear infinite;
+}
+
+.heat {
+  opacity: 0;
+  animation: heatPulse var(--cycle) linear infinite;
+  fill: url(#heatGradient);
+}
+
+/* Dégradé radial intégré via <defs> dans le SVG */
+svg defs {
+  pointer-events: none;
+}
+
+@keyframes rotateDisc {
+  0% { transform: rotate(0turn); }
+  40% { transform: rotate(4turn); }
+  65% { transform: rotate(4.3turn); }
+  100% { transform: rotate(4.35turn); }
+}
+
+@keyframes heatPulse {
+  0%,35% { opacity: 0; }
+  45% { opacity: 1; }
+  65% { opacity: 0.6; }
+  85% { opacity: 0.2; }
+  100% { opacity: 0; }
+}
+
 /* -------------------- HEADER -------------------- */
 .main-header {
     position: fixed;
