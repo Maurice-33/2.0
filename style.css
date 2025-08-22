@@ -1,196 +1,356 @@
-:root {
-  --color-primary: #2F6E91;
-  --color-light: #111111;
-  --color-dark: #ffffff;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --transition: all 0.3s ease;
-  --shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Motorsports</title>
+  <style>
+    /* style.css intégré */
+    :root {
+      --primary-color: #2F6E91; /* Bleu principal */
+      --secondary-color: #ffffff; /* Couleur de texte secondaire */
+      --dark-background: #111111; /* Nouveau fond très sombre */
+      --text-color: #ffffff;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--dark-background); /* Fond noir dominant */
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    #main-header {
+      background-color: rgba(47, 110, 145, 0.5); /* Bleu plus transparent */
+      backdrop-filter: blur(8px);
+      color: white; /* Texte blanc sur fond bleu */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombre plus prononcée */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom-left-radius: 0.75rem;
+      border-bottom-right-radius: 0.75rem;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white;
+    }
+    #main-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+    }
+    .nav-link:hover {
+      color: var(--secondary-color); /* Effet de survol sur la navigation */
+    }
+    #hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 2rem;
+      height: 1.5rem;
+      position: relative;
+    }
+    #hamburger-menu span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease-in-out;
+    }
+    @media (max-width: 768px) {
+      #main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgba(47, 110, 145, 0.95);
+      }
+      #main-nav.active {
+        display: flex;
+      }
+      .nav-link {
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      #hamburger-menu {
+        display: block;
+      }
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #444; /* Ligne de séparation plus claire */
+    }
+    .hero {
+      text-align: center;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1547842273-d5d888f000b2?q=80&w=2670&auto=format&fit=crop'); /* Image de fond */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white; /* Texte blanc pour la lisibilité sur l'image */
+      position: relative;
+    }
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6); /* Overlay noir semi-transparent plus sombre */
+        z-index: 1;
+    }
+    .hero > * {
+        position: relative;
+        z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: white;
+    }
+    h2 {
+      font-size: 2.25rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #222; /* Fond des champs plus sombre */
+      color: white;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(47, 110, 145, 0.4);
+    }
+    button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    button[type="submit"]:hover {
+      background-color: #255d81;
+    }
+    .error-message {
+      color: var(--primary-color);
+      font-size: 0.875rem;
+      display: none;
+    }
+    .form-message {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    #scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    #scroll-to-top:hover {
+      background-color: #255d81;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header id="main-header">
+    <div class="logo">🏎️ Apex Motorsports</div>
+    <button id="hamburger-menu" aria-expanded="false" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="main-nav">
+      <a href="#accueil" class="nav-link">Accueil</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  background: #1C1C1C;
-  color: var(--color-dark);
-  padding-top: 80px;
-}
+  <!-- ===== SECTIONS ===== -->
+  <main>
+    <section id="accueil" class="hero">
+      <h1>Apex Motorsports</h1>
+      <p>Performance, passion et vitesse ⚡</p>
+    </section>
 
-/* HEADER */
-#main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(252, 252, 252, 0.88);
-  color: var(--color-primary);
-  padding: var(--spacing-md) var(--spacing-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  transition: var(--transition);
-}
-#main-header.scrolled {
-  background: rgba(252, 252, 252, 0.88);
-  box-shadow: var(--shadow);
-}
-.logo {
-  font-weight: bold;
-  font-size: 1.2em;
-}
+    <section id="services">
+      <h2>Nos Services</h2>
+      <p>Préparation de voitures de course, entretien spécialisé et coaching pilotage.</p>
+      <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=1200" alt="Voiture de sport" class="service-img">
+    </section>
 
-/* HAMBURGER */
-#hamburger-menu {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-#hamburger-menu span {
-  width: 100%;
-  height: 3px;
-  background: var(--color-light);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-#hamburger-menu.is-active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-#hamburger-menu.is-active span:nth-child(2) {
-  opacity: 0;
-}
-#hamburger-menu.is-active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
+    <section id="contact">
+      <h2>Contact</h2>
+      <form>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+        <span id="nom-error" class="error-message"></span>
 
-/* NAVIGATION */
-#main-nav {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-.nav-link {
-  color: var(--color-light);
-  text-decoration: none;
-  transition: var(--transition);
-}
-.nav-link:hover {
-  color: var(--color-primary);
-}
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+        <span id="email-error" class="error-message"></span>
 
-/* HERO */
-.hero {
-  background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1600") center/cover no-repeat;
-  color: white;
-  padding: 120px 20px;
-  text-align: center;
-}
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: var(--spacing-md);
-}
-.hero p {
-  font-size: 1.2em;
-}
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+        <span id="message-error" class="error-message"></span>
 
-/* SERVICES */
-#services {
-  padding: 60px 20px;
-  text-align: center;
-}
-#services h2 {
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-}
-.service-img {
-  max-width: 600px;
-  width: 100%;
-  margin-top: var(--spacing-md);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
+        <button type="submit">Envoyer</button>
+        <div class="form-message"></div>
+      </form>
+    </section>
+  </main>
 
-/* CONTACT */
-#contact {
-  padding: 60px 20px;
-}
-form {
-  max-width: 500px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-input, textarea, button {
-  padding: var(--spacing-sm);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-button {
-  background: var(--color-primary);
-  color: var(--color-light);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-}
-button:hover {
-  background: darkred;
-}
-.error-message {
-  color: red;
-  font-size: 0.9em;
-}
+  <!-- ===== BOUTON RETOUR HAUT ===== -->
+  <button id="scroll-to-top" aria-label="Retour en haut">↑</button>
 
-/* SCROLL TO TOP */
-#scroll-to-top {
-  position: fixed;
-  bottom: var(--spacing-lg);
-  right: var(--spacing-lg);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: var(--color-light);
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#scroll-to-top.show {
-  opacity: 1;
-  visibility: visible;
-}
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    // script.js intégré
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('form');
+      const nameInput = document.getElementById('nom');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+      const formMessage = document.querySelector('.form-message');
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  #hamburger-menu {
-    display: flex;
-  }
-  #main-nav {
-    display: none;
-    flex-direction: column;
-    background: var(--color-dark);
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  #main-nav.is-open {
-    display: flex;
-  }
-}
+      const validateForm = () => {
+        let isValid = true;
+
+        if (nameInput.value.trim() === '') {
+          document.getElementById('nom-error').textContent = 'Veuillez entrer votre nom.';
+          document.getElementById('nom-error').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('nom-error').style.display = 'none';
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+          document.getElementById('email-error').textContent = 'Veuillez entrer une adresse email valide.';
+          document.getElementById('email-error').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('email-error').style.display = 'none';
+        }
+
+        if (messageInput.value.trim() === '') {
+          document.getElementById('message-error').textContent = 'Veuillez entrer votre message.';
+          document.getElementById('message-error').style.display = 'block';
+          isValid = false;
+        } else {
+          document.getElementById('message-error').style.display = 'none';
+        }
+
+        return isValid;
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+          formMessage.textContent = 'Message envoyé avec succès !';
+          formMessage.style.color = 'green';
+          form.reset();
+        } else {
+          formMessage.textContent = 'Veuillez corriger les erreurs dans le formulaire.';
+          formMessage.style.color = 'red';
+        }
+      });
+
+      // Bouton de menu hamburger
+      const hamburger = document.getElementById('hamburger-menu');
+      const navMenu = document.getElementById('main-nav');
+      hamburger.addEventListener('click', () => {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+        navMenu.classList.toggle('active');
+      });
+
+      // Bouton Retour en Haut
+      const scrollToTopBtn = document.getElementById('scroll-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.style.display = 'block';
+        } else {
+          scrollToTopBtn.style.display = 'none';
+        }
+      });
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
