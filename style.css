@@ -1,5 +1,5 @@
 :root {
-  --color-primary: #ff0000;
+  --color-primary: #2F6E91;
   --color-light: #111111;
   --color-dark: #ffffff;
   --spacing-sm: 8px;
@@ -17,7 +17,7 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #3D3D3D;
   color: var(--color-dark);
   padding-top: 80px;
 }
@@ -91,7 +91,7 @@ body {
 /* HERO */
 .hero {
   background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1600") center/cover no-repeat;
-  color: white;
+  color: black;
   padding: 120px 20px;
   text-align: center;
 }
