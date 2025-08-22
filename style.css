@@ -28,7 +28,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(FF, FF, FF, 0.98);
+  background: rgba(252, 252, 252, 0.98);
   color: var(--color-primary);
   padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
@@ -38,7 +38,7 @@ body {
   transition: var(--transition);
 }
 #main-header.scrolled {
-  background: rgba(FF, FF, FF, 0.98);
+  background: rgba(252, 252, 252, 0.98);
   box-shadow: var(--shadow);
 }
 .logo {
