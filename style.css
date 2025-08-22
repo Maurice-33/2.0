@@ -29,7 +29,7 @@ body {
   left: 0;
   right: 0;
   background: rgba(17, 17, 17, 0.95);
-  color: var(--color-light);
+  color: var(--color-dark);
   padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   justify-content: space-between;
