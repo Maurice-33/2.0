@@ -29,7 +29,7 @@ body {
   left: 0;
   right: 0;
   background: rgba(17, 17, 17, 0.95);
-  color: var(--color-dark);
+  color: var(--color-primary);
   padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   justify-content: space-between;
@@ -91,7 +91,7 @@ body {
 /* HERO */
 .hero {
   background: url("https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1600") center/cover no-repeat;
-  color: black;
+  color: white;
   padding: 120px 20px;
   text-align: center;
 }
