@@ -17,7 +17,7 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background: #3D3D3D;
+  background: #1C1C1C;
   color: var(--color-dark);
   padding-top: 80px;
 }
@@ -28,7 +28,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(252, 252, 252, 0.98);
+  background: rgba(252, 252, 252, 0.88);
   color: var(--color-primary);
   padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
@@ -38,7 +38,7 @@ body {
   transition: var(--transition);
 }
 #main-header.scrolled {
-  background: rgba(252, 252, 252, 0.98);
+  background: rgba(252, 252, 252, 0.88);
   box-shadow: var(--shadow);
 }
 .logo {
