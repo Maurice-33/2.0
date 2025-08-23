@@ -7,7 +7,7 @@
   <style>
     /* style.css intégré */
     :root {
-      --primary-color: #2F6E91; /* Bleu principal */
+      --primary-color: #024963; /* Bleu principal */
       --secondary-color: #ffffff; /* Couleur de texte secondaire */
       --dark-background: #111111; /* Nouveau fond très sombre */
       --text-color: #ffffff;
@@ -21,7 +21,7 @@
       line-height: 1.6;
     }
     #main-header {
-      background-color: rgba(47, 110, 145, 0.5); /* Bleu plus transparent */
+      background-color: rgba(2, 73, 99, 0.5); /* Bleu plus transparent */
       backdrop-filter: blur(8px);
       color: white; /* Texte blanc sur fond bleu */
       padding: 1rem 2rem;
