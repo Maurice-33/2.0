@@ -11,6 +11,38 @@
     --font-family-secondary: 'Roboto', sans-serif;
 }
 
+html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #f5ebe0, #e3c9a8); /* Dégradé terracotta doux */
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* Petit texte de test au centre */
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 2rem;
+      color: #4b2e2e;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="leaves"></canvas>
+  <div class="content">🌿 Ambiance Zen Terracotta 🌿</div>
+
+
 /* Base et typographie */
 html {
     scroll-behavior: smooth;
