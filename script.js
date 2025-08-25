@@ -112,4 +112,68 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    <script>
+    const canvas = document.getElementById('leaves');
+    const ctx = canvas.getContext('2d');
+    let w, h, leaves = [];
+    const colors = [
+      "#d77a61", // terracotta
+      "#f5ebe0", // beige clair
+      "#c89f9c", // rosé doux
+      "#8c5e58"  // brun terre
+    ];
+
+    function rand(a,b){ return Math.random()*(b-a)+a }
+
+    function resize() {
+      w = canvas.width = innerWidth;
+      h = canvas.height = innerHeight;
+      leaves = Array.from({length:40}, () => newLeaf());
+    }
+
+    function newLeaf() {
+      return {
+        x: rand(0, w),
+        y: rand(-h, 0),
+        size: rand(12, 28),
+        speed: rand(0.3, 1),
+        drift: rand(0.5, 1.5),
+        angle: rand(0, Math.PI*2),
+        color: colors[Math.floor(Math.random()*colors.length)],
+      };
+    }
+
+    function drawLeaf(leaf) {
+      ctx.save();
+      ctx.translate(leaf.x, leaf.y);
+      ctx.rotate(Math.sin(leaf.angle) * 0.5);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, leaf.size * 0.6, leaf.size, 0, 0, Math.PI*2);
+      ctx.fillStyle = leaf.color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,w,h);
+      for (let leaf of leaves) {
+        drawLeaf(leaf);
+        leaf.y += leaf.speed;
+        leaf.x += Math.sin(leaf.angle) * leaf.drift;
+        leaf.angle += 0.01;
+        if (leaf.y > h + leaf.size) {
+          Object.assign(leaf, newLeaf(), {y: -leaf.size});
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    addEventListener('resize', resize);
+    resize();
+    animate();
+  </script>
+</body>
+</html>
+
 });
