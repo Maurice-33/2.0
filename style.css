@@ -11,37 +11,57 @@
     --font-family-secondary: 'Roboto', sans-serif;
 }
 
-html, body {
+<style>
+    html, body {
       margin: 0;
       height: 100%;
-      overflow: hidden;
-      background: linear-gradient(to bottom, #f5ebe0, #e3c9a8); /* Dégradé terracotta doux */
+      overflow-x: hidden;
+      background: #F8F4F0; /* couleur principale du site */
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* Dégradé subtil pour donner de la profondeur */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 20%, #f1e6dc 0%, transparent 60%),
+                  radial-gradient(circle at 80% 40%, #e6d3c5 0%, transparent 70%);
     }
 
     canvas {
-      position: absolute;
+      position: fixed;
       inset: 0;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* Petit texte de test au centre */
+    /* Exemple de contenu pour scroller */
     .content {
       position: relative;
       z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      font-family: "Segoe UI", sans-serif;
-      font-size: 2rem;
+      padding: 4rem 15%;
       color: #4b2e2e;
+    }
+    .block {
+      margin: 4rem 0;
+      padding: 2rem;
+      background: rgba(255,255,255,0.6);
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
   </style>
 </head>
 <body>
   <canvas id="leaves"></canvas>
-  <div class="content">🌿 Ambiance Zen Terracotta 🌿</div>
 
+  <div class="content">
+    <div class="block">🌿 Bienvenue sur mon site zen</div>
+    <div class="block">Ici le contenu peut défiler...</div>
+    <div class="block">Les feuilles tombent toujours en arrière-plan.</div>
+    <div class="block">Tout est harmonisé avec le fond #F8F4F0</div>
+  </div>
 
 /* Base et typographie */
 html {
