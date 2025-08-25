@@ -113,15 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    <script>
+     <script>
     const canvas = document.getElementById('leaves');
     const ctx = canvas.getContext('2d');
     let w, h, leaves = [];
     const colors = [
       "#d77a61", // terracotta
-      "#f5ebe0", // beige clair
-      "#c89f9c", // rosé doux
-      "#8c5e58"  // brun terre
+      "#e6c7b4", // beige rosé
+      "#b08968", // brun doux
+      "#f8f4f0"  // couleur fond
     ];
 
     function rand(a,b){ return Math.random()*(b-a)+a }
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function resize() {
       w = canvas.width = innerWidth;
       h = canvas.height = innerHeight;
-      leaves = Array.from({length:40}, () => newLeaf());
+      leaves = Array.from({length:35}, () => newLeaf());
     }
 
     function newLeaf() {
@@ -175,5 +175,3 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 </body>
 </html>
-
-});
