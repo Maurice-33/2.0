@@ -338,29 +338,34 @@ document.querySelectorAll('.portfolio-item').forEach(el => {
 // Si vous voulez un vrai carrousel avec swipes, vous devriez intégrer une bibliothèque comme Swiper.js
 // ou écrire un script de défilement tactile customisé.
 // Ici, on a juste le défilement CSS natif qui est déjà tactile.
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const header = document.querySelector('.header');
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector(".hamburger-menu");
+    const body = document.body;
 
-    if (hamburgerMenu && header) {
-        hamburgerMenu.addEventListener('click', () => {
-            // Bascule la classe 'menu-open' sur le header pour contrôler l'état
-            header.classList.toggle('menu-open');
+    if (hamburger) {
+        hamburger.addEventListener("click", () => {
+            body.classList.toggle("menu-open");
 
-            // Bascule l'icône entre 'fa-bars' (hamburger) et 'fa-times' (croix)
-            const icon = hamburgerMenu.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Ferme le menu si un lien est cliqué
-        document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                header.classList.remove('menu-open');
-                const icon = hamburgerMenu.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
+            // Change icône (burger ↔ croix)
+            const icon = hamburger.querySelector("i");
+            if (body.classList.contains("menu-open")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-times");
+            } else {
+                icon.classList.remove("fa-times");
+                icon.classList.add("fa-bars");
+            }
         });
     }
+
+    // Fermer le menu quand on clique sur un lien
+    const navLinks = document.querySelectorAll(".nav a");
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            body.classList.remove("menu-open");
+            const icon = hamburger.querySelector("i");
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+        });
+    });
 });
