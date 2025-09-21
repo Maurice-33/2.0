@@ -682,6 +682,15 @@ h1 {
 
 /* --- Responsive Media Queries --- */
 @media (max-width: 1024px) {
+   body {
+        /* ANNOTATION: La propriété 'contain' redimensionne l'image pour qu'elle soit entièrement visible */
+        background-size: contain;
+        /* ANNOTATION: Le 'repeat' est désactivé pour éviter que l'image ne se répète */
+        background-repeat: no-repeat;
+        /* ANNOTATION: Le fond reste centré */
+        background-position: center top;
+    }
+    
     .main-header {
         justify-content: space-between;
         width: calc(100% - 40px);
@@ -836,3 +845,4 @@ h1 {
     padding: 20px 0;
     text-align: center;
 }
+
