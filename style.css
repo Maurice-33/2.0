@@ -682,7 +682,7 @@ h1 {
 
 /* --- Responsive Media Queries --- */
 @media (max-width: 1024px) {
-    .header {
+    .main-header {
         justify-content: space-between;
         width: calc(100% - 40px);
         left: 20px;
@@ -693,6 +693,10 @@ h1 {
 
     /* Cache les éléments sur les petits et moyens écrans */
     .nav {
+        display: none;
+    }
+
+    .header-right {
         display: none;
     }
 
@@ -758,7 +762,7 @@ h1 {
     }
 
     /* Styles du menu déroulant */
-    .header.menu-open {
+    .main-header.menu-open {
         background: none;
         backdrop-filter: none;
         border: none;
@@ -766,7 +770,7 @@ h1 {
         animation: none;
     }
 
-    .header.menu-open .nav {
+    .main-header.menu-open .nav {
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -781,19 +785,19 @@ h1 {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .header.menu-open .nav ul {
+    .main-header.menu-open .nav ul {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
         /* Aligne les liens à gauche */
     }
 
-    .header.menu-open .nav a {
+    .main-header.menu-open .nav a {
         padding: 10px;
     }
 
     /* Affichage des icônes sociales dans le menu déroulant */
-    .header.menu-open .header-socials-desktop {
+    .main-header.menu-open .header-socials-desktop {
         display: flex;
         flex-direction: column;
         gap: 10px;
