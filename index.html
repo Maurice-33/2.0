@@ -1,1171 +1,316 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Apex Motorsports - Spécialiste en préparation de voitures de course, entretien et coaching pilotage">
-  <meta name="keywords" content="motorsports, voiture course, préparation, coaching pilotage">
-  <title>Apex Motorsports - Performance & Passion</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="icon" href="silhouette.png" type="image/png">
-  <style>
-    /* style.css */
-    /* Variables de couleur et de police */
-    :root {
-      --primary-color: #d77a61; /* Terracotta */
-      --secondary-color: #4b2e2e; /* Brun foncé pour le texte */
-      --dark-background: #e6c7b4; /* Beige rosé */
-      --light-background: #f1e6dc; /* Beige clair */
-      --text-color: #4b2e2e; /* Texte principal */
-      --accent-color: #b08968; /* Brun doux */
-      --font-family-primary: 'Orbitron', sans-serif;
-      --font-family-secondary: 'Roboto', sans-serif;
-    }
-
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow-x: hidden;
-      background: var(--light-background);
-      font-family: var(--font-family-secondary);
-    }
-
-    /* Dégradé subtil pour donner de la profondeur */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: radial-gradient(circle at 20% 20%, #e6c7b4 0%, transparent 60%),
-                  radial-gradient(circle at 80% 40%, #f8f4f0 0%, transparent 70%);
-    }
-
-    canvas {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: var(--font-family-primary);
-      color: var(--secondary-color);
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    h2.section-title {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
-    }
-
-    .section-subtitle {
-      text-align: center;
-      margin-bottom: 3rem;
-      color: var(--secondary-color);
-      font-style: italic;
-    }
-
-    /* Header et Navigation */
-    #main-header {
-      background-color: rgba(241, 230, 220, 0.4);
-      backdrop-filter: blur(10px);
-      color: var(--secondary-color);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    #main-header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--secondary-color);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .logo-icon {
-      font-size: 1.7rem;
-      margin-right: 0.5rem;
-      height: 1.7rem;
-      width: auto;
-    }
-
-    #main-nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-link {
-      color: var(--secondary-color);
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .nav-link:hover {
-      color: var(--primary-color);
-      transform: translateY(-2px);
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary-color);
-      transition: width 0.3s ease-in-out;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    #hamburger-menu {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      width: 2rem;
-      height: 1.5rem;
-      position: relative;
-      z-index: 1001;
-    }
-
-    #hamburger-menu span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: var(--secondary-color);
-      margin-bottom: 5px;
-      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    }
-
-    @media (max-width: 992px) {
-      #main-nav {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: rgba(241, 230, 220, 0.95);
-        padding: 1rem 0;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-      }
-
-      #main-nav.active {
-        display: flex;
-      }
-
-      .nav-link {
-        padding: 0.75rem 0;
-        width: 100%;
-        text-align: center;
-      }
-
-      #hamburger-menu {
-        display: block;
-      }
-
-      #hamburger-menu.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      #hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-      }
-      #hamburger-menu.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
-    }
-
-    /* Sections */
-    .section {
-      padding: 6rem 0;
-      position: relative;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      padding: 4rem 15%;
-      color: var(--text-color);
-    }
-
-    .block {
-      margin: 4rem 0;
-      padding: 2rem;
-      background: rgba(255,255,255,0.6);
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    /* Section Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1547842273-d5d888f000b2?q=80&w=2670&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      color: var(--secondary-color);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 2rem;
-    }
-
-    .hero-title {
-      font-size: 4rem;
-      font-weight: 900;
-      margin: 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-subtitle {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
-      font-weight: 300;
-      color: var(--text-color);
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .stat-card {
-      background-color: rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      border-radius: 12px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      min-width: 150px;
-      color: var(--secondary-color);
-    }
-
-    .stat-number {
-      font-family: var(--font-family-primary);
-      font-size: 2.5rem;
-      font-weight: 900;
-      display: block;
-      margin-bottom: 0.25rem;
-      color: var(--primary-color);
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(215, 122, 97, 0.4);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(215, 122, 97, 0.6);
-    }
-
-    /* Services Section */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background-color: var(--light-background);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      border: 1px solid var(--accent-color);
-      position: relative;
-      overflow: hidden;
-      color: var(--text-color);
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .service-card h3 {
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      margin-top: 0;
-    }
-
-    .service-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .service-features {
-      list-style: none;
-      padding: 0;
-      margin-top: 1.5rem;
-    }
-
-    .service-features li {
-      padding-left: 1.5rem;
-      position: relative;
-      margin-bottom: 0.5rem;
-    }
-
-    .service-features li::before {
-      content: '✓';
-      color: var(--primary-color);
-      position: absolute;
-      left: 0;
-    }
-
-    .service-card.featured {
-      border: 2px solid var(--primary-color);
-      box-shadow: 0 0 20px rgba(215, 122, 97, 0.3);
-    }
-
-    .service-badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-bottom-left-radius: 12px;
-    }
-
-    /* Galerie Section */
-    .gallery-section {
-      background-color: var(--dark-background);
-      color: var(--text-color);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-      color: white;
-      padding: 1.5rem;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      transform: translateY(0);
-    }
-
-    /* À Propos Section */
-    .about-section {
-      background-color: var(--light-background);
-      color: var(--text-color);
-    }
-
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .about-text {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .about-image {
-      flex: 1;
-      text-align: center;
-    }
-
-    .about-image img {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .about-features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .about-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      line-height: 1;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      background-color: var(--dark-background);
-      color: var(--text-color);
-    }
-
-    .contact-content {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-
-    .contact-info {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .contact-info h3 {
-      color: var(--primary-color);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .contact-form {
-      flex: 1;
-      min-width: 300px;
-      background-color: var(--light-background);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid var(--accent-color);
-      border-radius: 8px;
-      background-color: #fff;
-      color: var(--text-color);
-      box-sizing: border-box;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(215, 122, 97, 0.3);
-    }
-
-    .submit-button {
-      width: 100%;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1rem;
-      text-transform: uppercase;
-      transition: background-color 0.3s, transform 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .submit-button:hover {
-      background-color: #c06950;
-      transform: translateY(-2px);
-    }
-
-    .button-text, .button-loader {
-      display: block;
-    }
-
-    .button-loader {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid var(--primary-color);
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      display: none;
-      margin-left: 10px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .error-message {
-      color: #ff6b6b;
-      font-size: 0.875rem;
-      display: none;
-      margin-top: 0.25rem;
-    }
-
-    .form-message {
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: 500;
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--dark-background);
-      color: var(--text-color);
-      padding: 3rem 0 1rem;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
-
-    .footer-logo {
-      font-size: 1.25rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-    }
-
-    .footer-section h4 {
-      color: var(--primary-color);
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-section a {
-      color: var(--text-color);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-section a:hover {
-      color: var(--primary-color);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--accent-color);
-    }
-
-    /* Bouton Retour en Haut */
-    #scroll-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 2rem;
-      line-height: 50px;
-      text-align: center;
-      cursor: pointer;
-      display: none;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    #scroll-to-top:hover {
-      background-color: #c06950;
-      transform: translateY(-5px);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Le Site ou je concentre tout ce que j'aime">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>Bison Test</title>
+    <link rel="icon" type="image/png" href="bison.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <canvas id="leaves"></canvas>
+    <div id="particles-js"></div>
 
-      <header id="main-header">
-    <div class="container">
-      <div class="logo">
-        <img src="silhouette.png" class="logo-icon">
-        <span class="logo-text">Apex Motorsports</span>
-      </div>
-      <button id="hamburger-menu" aria-expanded="false" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav id="main-nav">
-        <a href="#accueil" class="nav-link">Accueil</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#gallery" class="nav-link">Galerie</a>
-        <a href="#about" class="nav-link">À propos</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-    </div>
-  </header>
+    <header class="main-header">
+        <div class="nav-container">
+            <nav class="nav">
+                <ul>
+                    <li>
+                        <a href="#accueil" class="logo-and-link" data-section="home">
+                            <img src="bison.png" alt="Logo de l'entreprise">
+                            Accueil
+                        </a>
+                    </li>
+                    <li><a href="#services" data-section="services">Services</a></li>
+                    <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
+                    <li><a href="#contact" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
 
-    <main>
-        <section id="accueil" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">Apex Motorsports</h1>
-        <p class="hero-subtitle">Performance, passion et vitesse ⚡</p>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span class="stat-number">15+</span>
-            <span class="stat-label">Années d'expérience</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Voitures préparées</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Victoires</span>
-          </div>
-        </div>
-        <a href="#services" class="cta-button">Découvrir nos services</a>
-      </div>
-    </section>
+            <button class="hamburger-menu" aria-label="Ouvrir le menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-        <section id="services" class="section">
-      <div class="container">
-        <h2 class="section-title">Nos Services</h2>
-        <p class="section-subtitle">Excellence et performance au service de votre passion</p>
-        
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">🔧</div>
-            <h3>Préparation Moteur</h3>
-            <p>Optimisation et préparation complète de votre moteur pour des performances exceptionnelles.</p>
-            <ul class="service-features">
-              <li>Reprogrammation ECU</li>
-              <li>Turbo & suralimentation</li>
-              <li>Échappement sport</li>
-            </ul>
-          </div>
-          
-          <div class="service-card featured">
-            <div class="service-badge">Populaire</div>
-            <div class="service-icon">🏁</div>
-            <h3>Coaching Pilotage</h3>
-            <p>Formation personnalisée avec nos pilotes professionnels sur circuit.</p>
-            <ul class="service-features">
-              <li>Cours individuels</li>
-              <li>Analyse télémétrie</li>
-              <li>Stage sur circuit</li>
-            </ul>
-          </div>
-          
-          <div class="service-card">
-            <div class="service-icon">⚡</div>
-            <h3>Entretien Spécialisé</h3>
-            <p>Maintenance experte pour voitures de sport et de collection.</p>
-            <ul class="service-features">
-              <li>Diagnostic complet</li>
-              <li>Pièces d'origine</li>
-              <li>Garantie premium</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="header-right">
+                <div class="header-socials-desktop">
+                    <a href="https://www.youtube.com/@slow_alchimiste/" target="_blank" class="social-icon"
+                        aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/slow_alchimiste?igsh=dWVhb3ozYm55MnJn/" target="_blank"
+                        class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://fr.linkedin.com/in/morganeberge/" target="_blank" class="social-icon"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="inspiration1.php" target="_blank" class="social-icon">S1</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- <div class="nav-wrapper">
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a href="#acceuil" class="logo-and-link" data-section="home">
+                        <img src="bison.png" alt="Logo de l'entreprise">
+                        Accueil
+                    </a>
+                </li>
+                <li><a href="#services" data-section="services">Services</a></li>
+                <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <div class="header-socials-desktop">
+                <a href="https://www.youtube.com/@slow_alchimiste/" target="_blank" class="social-icon"
+                    aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/slow_alchimiste?igsh=dWVhb3ozYm55MnJn/" target="_blank"
+                    class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://fr.linkedin.com/in/morganeberge/" target="_blank" class="social-icon"
+                    aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="inspiration1.php" target="_blank">S1</a>
+                </a>
+            </div>
+        </div>
+    </div>
 
-        <section id="gallery" class="section gallery-section">
-      <div class="container">
-        <h2 class="section-title">Nos Réalisations</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&h=400&fit=crop" alt="Voiture de sport rouge" loading="lazy">
-            <div class="gallery-overlay">
-              <h4>Ferrari 488 GTB</h4>
-              <p>Préparation moteur +150hp</p>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=400&fit=crop" alt="Porsche sur circuit" loading="lazy">
-            <div class="gallery-overlay">
-              <h4>Porsche 911 GT3</h4>
-              <p>Setup circuit & aéro</p>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="BMW M3 motorsport" loading="lazy">
-            <div class="gallery-overlay">
-              <h4>BMW M3 Competition</h4>
-              <p>Préparation complète</p>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&h=400&fit=crop" alt="Lamborghini Huracan" loading="lazy">
-            <div class="gallery-overlay">
-              <h4>Lamborghini Huracán</h4>
-              <p>Échappement Akrapovic</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <button class="hamburger-menu" aria-label="Ouvrir le menu"><i class="fas fa-bars"></i></button>
 
-        <section id="about" class="section about-section">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2 class="section-title">À Propos d'Apex</h2>
-            <p class="about-description">
-              Depuis plus de 15 ans, Apex Motorsports est la référence en matière de préparation automobile 
-              et de coaching pilotage. Notre équipe d'experts passionnés met son savoir-faire au service 
-              de votre performance.
-            </p>
-            <div class="about-features">
-              <div class="about-feature">
-                <span class="feature-icon">🏆</span>
-                <div>
-                  <h4>Excellence</h4>
-                  <p>Standards les plus élevés</p>
-                </div>
-              </div>
-              <div class="about-feature">
-                <span class="feature-icon">🔬</span>
-                <div>
-                  <h4>Innovation</h4>
-                  <p>Technologies de pointe</p>
-                </div>
-              </div>
-              <div class="about-feature">
-                <span class="feature-icon">👥</span>
-                <div>
-                  <h4>Expertise</h4>
-                  <p>Équipe de professionnels</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=600&fit=crop" alt="Mécanicien au travail">
-          </div>
-        </div>
-      </div>
-    </section>
+    <div id="acceuil" class="site-container">
+        <header class="header">
+        </header> -->
 
-        <section id="contact" class="section contact-section">
-      <div class="container">
-        <h2 class="section-title">Contactez-nous</h2>
-        <p class="section-subtitle">Parlons de votre projet</p>
-        
-        <div class="contact-content">
-          <div class="contact-info">
-            <h3>Informations</h3>
-            <div class="contact-item">
-              <span class="contact-icon">📍</span>
-              <div>
-                <h4>Adresse</h4>
-                <p>123 Avenue du Circuit<br>33140 Villenave-d'Ornon</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">📞</span>
-              <div>
-                <h4>Téléphone</h4>
-                <p>+33 5 56 00 00 00</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">✉️</span>
-              <div>
-                <h4>Email</h4>
-                <p>contact@apex-motorsports.fr</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">🕒</span>
-              <div>
-                <h4>Horaires</h4>
-                <p>Lun-Ven: 8h-18h<br>Sam: 9h-12h</p>
-              </div>
-            </div>
-          </div>
-          
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label for="nom">Nom *</label>
-              <input type="text" id="nom" name="nom" required>
-              <span id="nom-error" class="error-message"></span>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
-              <span id="email-error" class="error-message"></span>
-            </div>
-            
-            <div class="form-group">
-              <label for="telephone">Téléphone</label>
-              <input type="tel" id="telephone" name="telephone">
-            </div>
-            
-            <div class="form-group">
-              <label for="service">Service souhaité</label>
-              <select id="service" name="service">
-                <option value="">Sélectionnez un service</option>
-                <option value="preparation">Préparation moteur</option>
-                <option value="coaching">Coaching pilotage</option>
-                <option value="entretien">Entretien spécialisé</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-              <span id="message-error" class="error-message"></span>
-            </div>
-            
-            <button type="submit" class="submit-button">
-              <span class="button-text">Envoyer le message</span>
-              <span class="button-loader"></span>
-            </button>
-            
-            <div class="form-message" id="form-message"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+    <main>
+        <section class="hero" aria-labelledby="hero-title scroll-reveal">
+            <div class="container inner">
+                <div>
+                    <h1 id="hero-title" class="scroll-reveal">Créez un site moderne, rapide et accessible</h1>
+                    <p class="lead">Un point de départ élégant avec dark mode, animations douces, composants
+                        réutilisables, et
+                        bonnes pratiques. Déployez en quelques minutes sur GitHub Pages.</p>
+                    <div class="cta-group" style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+                        <a class="btn btn-primary" href="#portfolio">Voir les exemples</a>
+                        <a class="btn btn-secondary" href="#contact">Me contacter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <span class="logo-icon">🏎️</span>
-            <span class="logo-text">Apex Motorsports</span>
-          </div>
-          <p>Performance, passion et vitesse depuis 2008</p>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#services">Préparation moteur</a></li>
-            <li><a href="#services">Coaching pilotage</a></li>
-            <li><a href="#services">Entretien spécialisé</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Contact</h4>
-          <p>📞 +33 5 56 00 00 00</p>
-          <p>✉️ contact@apex-motorsports.fr</p>
-          <p>📍 Villenave-d'Ornon, France</p>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2024 Apex Motorsports. Tous droits réservés.</p>
-      </div>
-    </div>
-  </footer>
+        <hr class="section-divider">
 
-    <button id="scroll-to-top" aria-label="Retour en haut">
-    <span>↑</span>
-  </button>
+        <section id="services" class="services-section scroll-reveal">
+            <div class="container">
+                <h2 class="h2-form">Mes Services</h2>
+                <p class="section-subtitle">Créons Ensemble Votre Avenir Numérique</p>
+                <div class="row">
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Sélection des éléments
-      const hamburger = document.getElementById('hamburger-menu');
-      const navMenu = document.getElementById('main-nav');
-      const form = document.getElementById('contact-form');
-      const submitBtn = document.querySelector('.submit-button');
-      const formMessage = document.getElementById('form-message');
-      const scrollToTopBtn = document.getElementById('scroll-to-top');
+                    <div class="col">
+                        <div class="icon">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <h3>Web developpement</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias at earum, commodi
+                            repellendus
+                            cupiditate molestias velit reiciendis porro sed? Nisi temporibus earum eaque
+                            voluptatibus
+                            soluta autem expedita ipsum architecto accusantium?</p>
+                    </div>
+                    <div class="col">
+                        <div class="icon">
+                            <i class="fa fa-mobile"></i>
+                        </div>
+                        <h3>Web Responsive</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias at earum, commodi
+                            repellendus
+                            cupiditate molestias velit reiciendis porro sed? Nisi temporibus earum eaque
+                            voluptatibus
+                            soluta autem expedita ipsum architecto accusantium?</p>
+                    </div>
+                    <div class="col">
+                        <div class="icon">
+                            <i class="fa fa-code"></i>
+                        </div>
+                        <h3>Code HTML/CSS</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias at earum, commodi
+                            repellendus
+                            cupiditate molestias velit reiciendis porro sed? Nisi temporibus earum eaque
+                            voluptatibus
+                            soluta autem expedita ipsum architecto accusantium?</p>
+                    </div>
+                    <div class="col">
+                        <div class="icon">
+                            <i class="fa fa-paint-brush"></i>
+                        </div>
+                        <h3>Couleur Personnalisable</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias at earum, commodi
+                            repellendus
+                            cupiditate molestias velit reiciendis porro sed? Nisi temporibus earum eaque
+                            voluptatibus
+                            soluta autem expedita ipsum architecto accusantium?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      // Gestion du menu hamburger
-      hamburger.addEventListener('click', () => {
-        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !isExpanded);
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
+        <hr class="section-divider">
 
-      // Fermeture du menu lors du clic sur un lien (mobile)
-      navMenu.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
+        <section id="portfolio" class="portfolio-section scroll-reveal">
+            <div class="container">
+                <h2 class="h2-form">Mes Créations Numériques</h2>
+                <p class="section-subtitle">Découvrez mon travail, une fusion d'innovation et de design.</p>
 
-      // Validation du formulaire de contact
-      const validateForm = () => {
-        let isValid = true;
-        
-        const nom = document.getElementById('nom').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        // Validation du nom
-        if (nom === '') {
-          document.getElementById('nom-error').textContent = 'Veuillez entrer votre nom.';
-          document.getElementById('nom-error').style.display = 'block';
-          isValid = false;
-        } else {
-          document.getElementById('nom-error').style.display = 'none';
-        }
-        
-        // Validation de l'email
-        if (!emailRegex.test(email)) {
-          document.getElementById('email-error').textContent = 'Veuillez entrer une adresse email valide.';
-          document.getElementById('email-error').style.display = 'block';
-          isValid = false;
-        } else {
-          document.getElementById('email-error').style.display = 'none';
-        }
-        
-        // Validation du message
-        if (message === '') {
-          document.getElementById('message-error').textContent = 'Veuillez entrer votre message.';
-          document.getElementById('message-error').style.display = 'block';
-          isValid = false;
-        } else {
-          document.getElementById('message-error').style.display = 'none';
-        }
-        
-        return isValid;
-      };
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">Tout</button>
+                    <button class="filter-btn" data-filter="web">Sites Web</button>
+                    <button class="filter-btn" data-filter="design">Design UI/UX</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                </div>
 
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          
-          if (validateForm()) {
-            // Afficher le loader et cacher le texte du bouton
-            submitBtn.querySelector('.button-text').style.display = 'none';
-            submitBtn.querySelector('.button-loader').style.display = 'block';
+                <div class="portfolio-grid">
+                    <div class="portfolio-item web scroll-reveal">
+                        <div class="item-inner">
+                            <img src="images/site1.jpg" alt="Projet Web 1" loading="lazy">
+                            <div class="item-overlay">
+                                <h3>Site E-commerce Moderne</h3>
+                                <p>Développement front-end et UI/UX.</p>
+                                <a href="#" class="view-project-btn" data-project="project1">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item design scroll-reveal">
+                        <div class="item-inner">
+                            <img src="./images/site2.jpg" alt="Projet Design 1" loading="lazy">
+                            <div class="item-overlay">
+                                <h3>Application Mobile Intuitive</h3>
+                                <p>Design d'interface et expérience utilisateur.</p>
+                                <a href="#" class="view-project-btn" data-project="project2">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item branding scroll-reveal">
+                        <div class="item-inner">
+                            <img src="images/site3.jpg" alt="Projet Branding 1" loading="lazy">
+                            <div class="item-overlay">
+                                <h3>Identité Visuelle Complète</h3>
+                                <p>Logo, charte graphique et supports.</p>
+                                <a href="#" class="view-project-btn" data-project="project3">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item web scroll-reveal">
+                        <div class="item-inner">
+                            <img src="images/site4.jpg" alt="Projet Web 2" loading="lazy">
+                            <div class="item-overlay">
+                                <h3>Plateforme de Réservation</h3>
+                                <p>Développement Full-Stack.</p>
+                                <a href="#" class="view-project-btn" data-project="project4">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item design scroll-reveal">
+                        <div class="item-inner">
+                            <img src="images/site5.jpg" alt="Projet Design 2" loading="lazy">
+                            <div class="item-overlay">
+                                <h3>Refonte de Site Corporate</h3>
+                                <p>Amélioration de l'UX et design moderne.</p>
+                                <a href="#" class="view-project-btn" data-project="project5">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            // Simuler un envoi de formulaire (pour la démo)
-            setTimeout(() => {
-              formMessage.textContent = 'Votre message a été envoyé avec succès ! Merci de nous avoir contactés.';
-              formMessage.style.color = '#38a169'; // vert
-              form.reset();
-              
-              // Cacher le loader et afficher le texte du bouton
-              submitBtn.querySelector('.button-text').style.display = 'block';
-              submitBtn.querySelector('.button-loader').style.display = 'none';
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="modal-title" class="h2-form"></h2>
+                <div id="modal-gallery" class="modal-gallery">
+                </div>
+                <p id="modal-description"></p>
+                <a id="modal-link" href="#" target="_blank" class="btn btn-primary">Visiter le site</a>
+            </div>
+        </div>
 
-              // Effacer le message après 5 secondes
-              setTimeout(() => {
-                formMessage.textContent = '';
-              }, 5000);
-              
-            }, 2000); // Délai de 2 secondes
-            
-          } else {
-            formMessage.textContent = 'Veuillez corriger les erreurs dans le formulaire avant d\'envoyer.';
-            formMessage.style.color = '#ff6b6b'; // rouge
-          }
-        });
-      }
+        <hr class="section-divider">
 
-      // Gestion du bouton "Retour en Haut"
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          scrollToTopBtn.style.display = 'block';
-        } else {
-          scrollToTopBtn.style.display = 'none';
-        }
-      });
+        <!-- Témoignages -->
+        <section class="section" id="avis">
+            <div class="container">
+                <h2 class="h2-form">Mes Avis</h2>
+                <div class="testimonials">
+                    <blockquote class="quote card reveal">Design élégant, charge ultra‑rapide. Parfait pour lancer
+                        un produit.
+                        <footer class="avis-footer">— Morgane, Brandeuse</footer>
+                    </blockquote>
+                    <blockquote class="quote card reveal">Accessible au clavier et lecteur d'écran, bravo ! <footer
+                            class="avis-footer">
+                            — Taïko, CM</footer>
+                    </blockquote>
+                    <blockquote class="quote card reveal">Le dark mode auto est un vrai plus pour les visiteurs
+                        nocturnes.
+                        <footer class="avis-footer">— Andy, dev</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
 
-      if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        });
-      }
+        <hr class="section-divider">
 
-      // Animation des feuilles
-      const canvas = document.getElementById('leaves');
-      const ctx = canvas.getContext('2d');
-      let w, h, leaves = [];
-      const colors = [
-        "#d77a61", // terracotta
-        "#e6c7b4", // beige rosé
-        "#b08968", // brun doux
-        "#f8f4f0"  // couleur fond
-      ];
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="h2-form">Contactez-nous</h2>
+                <div class="form-container">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder=" " required>
+                            <label class="form-label">Nom complet</label>
+                        </div>
 
-      function rand(a,b){ return Math.random()*(b-a)+a }
+                        <div class="form-group">
+                            <input type="email" class="form-input" placeholder=" " required>
+                            <label class="form-label">Adresse email</label>
+                        </div>
 
-      function resize() {
-        w = canvas.width = innerWidth;
-        h = canvas.height = innerHeight;
-        leaves = Array.from({length:35}, () => newLeaf());
-      }
+                        <div class="form-group">
+                            <textarea class="form-input" rows="5" placeholder=" " required></textarea>
+                            <label class="form-label">Message</label>
+                        </div>
 
-      function newLeaf() {
-        return {
-          x: rand(0, w),
-          y: rand(-h, 0),
-          size: rand(12, 28),
-          speed: rand(0.3, 1),
-          drift: rand(0.5, 1.5),
-          angle: rand(0, Math.PI*2),
-          color: colors[Math.floor(Math.random()*colors.length)],
-        };
-      }
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
 
-      function drawLeaf(leaf) {
-        ctx.save();
-        ctx.translate(leaf.x, leaf.y);
-        ctx.rotate(Math.sin(leaf.angle) * 0.5);
-        ctx.beginPath();
-        ctx.ellipse(0, 0, leaf.size * 0.6, leaf.size, 0, 0, Math.PI*2);
-        ctx.fillStyle = leaf.color;
-        ctx.fill();
-        ctx.restore();
-      }
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Bison. Tous droits réservés.</p>
+            <p>Créé avec passion et innovation</p>
+        </div>
+    </footer>
 
-      function animate() {
-        ctx.clearRect(0,0,w,h);
-        for (let leaf of leaves) {
-          drawLeaf(leaf);
-          leaf.y += leaf.speed;
-          leaf.x += Math.sin(leaf.angle) * leaf.drift;
-          leaf.angle += 0.01;
-          if (leaf.y > h + leaf.size) {
-            Object.assign(leaf, newLeaf(), {y: -leaf.size});
-          }
-        }
-        requestAnimationFrame(animate);
-      }
-
-      addEventListener('resize', resize);
-      resize();
-      animate();
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
