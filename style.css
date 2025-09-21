@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    ont-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     background-image: url('fond.png');
     background-size: cover;
     background-attachment: fixed;
@@ -99,7 +99,19 @@ body {
 }
 
 /* --- Navigation & Header --- */
+.main-header {
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
 
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .nav {
     display: flex;
@@ -117,13 +129,6 @@ body {
     padding: 10px 30px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: navFloat 3s ease-in-out infinite;
-}
-
-.nav img {
-    height: 32px;
-    /* réduit un peu pour correspondre à la taille du texte */
-    width: auto;
-    display: block;
 }
 
 .nav ul {
@@ -169,6 +174,12 @@ body {
     width: 100%;
 }
 
+.nav img {
+    height: 32px;
+    /* réduit un peu pour correspondre à la taille du texte */
+    width: auto;
+    display: block;
+}
 
 .nav .logo-and-link img {
     height: 60px;
@@ -208,6 +219,20 @@ body {
 }
 
 /* --- Sections de la page --- */
+/* --- Hamburger Menu --- */
+.hamburger-menu {
+    display: none;
+    /* caché par défaut */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    color: var(--light);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}
 
 /* Séparateur de section */
 .section-divider {
@@ -682,7 +707,7 @@ h1 {
 
 /* --- Responsive Media Queries --- */
 @media (max-width: 1024px) {
-   body {
+    body {
         /* ANNOTATION: La propriété 'contain' redimensionne l'image pour qu'elle soit entièrement visible */
         background-size: contain;
         /* ANNOTATION: Le 'repeat' est désactivé pour éviter que l'image ne se répète */
@@ -690,7 +715,7 @@ h1 {
         /* ANNOTATION: Le fond reste centré */
         background-position: center top;
     }
-    
+
     .main-header {
         justify-content: space-between;
         width: calc(100% - 40px);
@@ -705,6 +730,11 @@ h1 {
         display: none;
     }
 
+    .nav,
+    .header-right {
+        display: none;
+    }
+
     .header-right {
         display: none;
     }
@@ -716,11 +746,6 @@ h1 {
     /* Affiche le bouton hamburger */
     .hamburger-menu {
         display: block;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: var(--light);
     }
 
     .header-container {
@@ -779,39 +804,40 @@ h1 {
         animation: none;
     }
 
-    .main-header.menu-open .nav {
+    .menu-open .nav {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 60px;
-        /* Ajuste la position sous le bouton */
-        right: 0;
-        width: 250px;
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        left: 20px;
         background: rgba(15, 15, 35, 0.9);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        gap: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: none;
     }
 
-    .main-header.menu-open .nav ul {
+    .menu-open .nav ul {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
         /* Aligne les liens à gauche */
     }
 
-    .main-header.menu-open .nav a {
+    .menu-open .nav a {
         padding: 10px;
     }
 
     /* Affichage des icônes sociales dans le menu déroulant */
-    .main-header.menu-open .header-socials-desktop {
+    .menu-open .header-socials-desktop {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-        margin-top: 15px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
     }
 }
 
@@ -836,6 +862,26 @@ h1 {
     .lead {
         font-size: 1em;
     }
+
+}
+
+.nav .header-socials-desktop {
+    display: none;
+}
+
+/* En mobile, inverse : on cache la barre droite et on affiche ceux du menu */
+@media (max-width: 1024px) {
+    .header-right {
+        display: none;
+    }
+
+    .nav .header-socials-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
 }
 
 /* Footer */
@@ -845,4 +891,3 @@ h1 {
     padding: 20px 0;
     text-align: center;
 }
-
