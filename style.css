@@ -29,6 +29,31 @@ body {
     min-height: 100vh;
 }
 
+/* 📱 Mobile : pas de background fixed (bug iOS/Android) */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        /* Désactive le fixed */
+        background-size: cover;
+        background-position: top center;
+    }
+}
+
+/* 💻 Tablette : on ajuste un peu la position */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        background-position: center top;
+    }
+}
+
+/* 🖥️ Grand écran : on garde la version fixe et centrée */
+@media (min-width: 1025px) {
+    body {
+        background-attachment: fixed;
+        background-position: center;
+    }
+}
+
 .site-container {
     flex: 1;
 }
@@ -891,3 +916,4 @@ h1 {
     padding: 20px 0;
     text-align: center;
 }
+
