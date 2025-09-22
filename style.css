@@ -875,8 +875,6 @@ h1 {
     .menu-open .nav ul {
         flex-direction: column;
         gap: 15px;
-        align-items: flex-start;
-        /* Aligne les liens à gauche */
     }
 
     .menu-open .nav a {
@@ -943,4 +941,5 @@ h1 {
     padding: 20px 0;
     text-align: center;
 }
+
 
