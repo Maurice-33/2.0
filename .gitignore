@@ -1,0 +1,8 @@
+# Tout ignorer par défaut
+*
+# Sauf les fichiers principaux
+!style.css
+!index.html
+!script.js
+# Ne pas ignorer le dossier .gitignore lui-même
+!.gitignore

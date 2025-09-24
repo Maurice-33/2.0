@@ -9,6 +9,19 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
 
+            // Animation GSAP slide + fade
+            gsap.fromTo(entry.target, {
+                opacity: 0,
+                y: 50,
+                filter: 'blur(5px)'
+            }, {
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)',
+                duration: 1,
+                ease: 'power2.out'
+            });
+
             // Animer les barres de progression
             const progressBars = entry.target.querySelectorAll('.progress-fill');
             progressBars.forEach(bar => {
@@ -379,4 +392,62 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('cookieConsent', 'declined');
         banner.style.display = 'none';
     };
+});
+
+// Animation GSAP pour la section Témoignages (#avis)
+window.addEventListener('DOMContentLoaded', () => {
+    const avisSection = document.querySelector('#avis');
+    if (avisSection) {
+        gsap.set(avisSection, { opacity: 0, y: 80 });
+        const avisObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gsap.to(avisSection, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    });
+                    avisObserver.unobserve(avisSection);
+                }
+            });
+        }, { threshold: 0.2 });
+        avisObserver.observe(avisSection);
+    }
+});
+
+// Animation GSAP pour la section Formulaire de contact (#contact)
+window.addEventListener('DOMContentLoaded', () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        gsap.set(contactSection, { opacity: 0, y: 100 });
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gsap.to(contactSection, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: 'power3.out',
+                        onComplete: () => {
+                            // Animation rebond sur les champs du formulaire
+                            gsap.fromTo(
+                                contactSection.querySelectorAll('.form-group'),
+                                { opacity: 0, y: 40 },
+                                {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 0.7,
+                                    stagger: 0.15,
+                                    ease: 'back.out(1.7)'
+                                }
+                            );
+                        }
+                    });
+                    contactObserver.unobserve(contactSection);
+                }
+            });
+        }, { threshold: 0.2 });
+        contactObserver.observe(contactSection);
+    }
 });
