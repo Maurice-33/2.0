@@ -66,11 +66,6 @@ window.addEventListener('scroll', () => {
         parallax.style.transform = `translateY(${speed}px)`;
     }
 
-    // Effet sur les décorations
-    document.querySelectorAll('.decoration').forEach((decoration, index) => {
-        const speed = (index + 1) * 0.3;
-        decoration.style.transform = `rotate(${scrolled * speed}deg)`;
-    });
 });
 
 // Effets de boutons interactifs
@@ -199,7 +194,7 @@ function changeRandomTheme() {
 // Appeler la fonction immédiatement au chargement de la page
 changeRandomTheme();
 
-// Répéter le changement de thème toutes les 10 minutes (600 000 millisecondes)
+// Répéter le changement de thème toutes les 6 secondes (10min = 600 000 millisecondes)
 setInterval(changeRandomTheme, 6000);
 
 // Performance monitoring
@@ -368,4 +363,20 @@ document.addEventListener("DOMContentLoaded", () => {
             icon.classList.add("fa-bars");
         });
     });
+});
+
+// Bannière cookies moderne
+document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('cookieConsent')) {
+        banner.style.display = 'flex';
+    }
+    document.getElementById('cookie-accept').onclick = () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.style.display = 'none';
+    };
+    document.getElementById('cookie-decline').onclick = () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.style.display = 'none';
+    };
 });
