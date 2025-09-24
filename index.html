@@ -4,10 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Le Site ou je concentre tout ce que j'aime">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <title>Bison Test</title>
+    <meta name="description"
+        content="Portfolio de Morgane Berge, développeuse web et designer UI/UX. Découvrez mes services, réalisations et contactez-moi pour vos projets numériques.">
+    <meta name="keywords"
+        content="web, développement, design, UI, UX, portfolio, Morgane, site moderne, responsive, branding, freelance">
+    <meta name="author" content="Morgane Berge">
+    <meta property="og:title" content="Bison Test – Portfolio Web & Design">
+    <meta property="og:description"
+        content="Portfolio de Morgane, développeuse web et designer UI/UX. Découvrez mes services, réalisations et contactez-moi pour vos projets numériques.">
+    <meta property="og:image" content="URL_DE_TON_IMAGE_DE_PARTAGE">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="URL_DE_TON_SITE">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Bison Test – Portfolio Web & Design</title>
     <link rel="icon" type="image/png" href="bison.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -16,11 +25,10 @@
 </head>
 
 <body>
-    <div id="particles-js"></div>
 
     <header class="main-header">
         <div class="nav-container">
-            <nav class="nav">
+            <nav class="nav" aria-label="Navigation principale">
                 <ul>
                     <li>
                         <a href="#accueil" class="logo-and-link" data-section="home">
@@ -32,42 +40,36 @@
                     <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
                     <li><a href="#contact" data-section="contact">Contact</a></li>
                 </ul>
-
-                <!-- Réseaux sociaux inclus dans nav pour mobile -->
                 <div class="header-socials-desktop">
                     <a href="https://www.youtube.com/@slow_alchimiste/" target="_blank" class="social-icon"
-                        aria-label="YouTube">
+                        aria-label="Chaîne YouTube slow_alchimiste">
                         <i class="fab fa-youtube"></i>
                     </a>
                     <a href="https://www.instagram.com/slow_alchimiste?igsh=dWVhb3ozYm55MnJn/" target="_blank"
-                        class="social-icon" aria-label="Instagram">
+                        class="social-icon" aria-label="Compte Instagram slow_alchimiste">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="https://fr.linkedin.com/in/morganeberge/" target="_blank" class="social-icon"
-                        aria-label="LinkedIn">
+                        aria-label="Compte LinkedIn de ....">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
             </nav>
-
-            <!-- Bouton hamburger -->
-            <button class="hamburger-menu" aria-label="Ouvrir le menu">
+            <button class="hamburger-menu" aria-label="Ouvrir le menu sur mobile et petit écran">
                 <i class="fas fa-bars"></i>
             </button>
-
-            <!-- Réseaux sociaux visibles sur desktop -->
             <div class="header-right">
                 <div class="header-socials-desktop">
                     <a href="https://www.youtube.com/@slow_alchimiste/" target="_blank" class="social-icon"
-                        aria-label="YouTube">
+                        aria-label="Chaîne YouTube slow_alchimiste">
                         <i class="fab fa-youtube"></i>
                     </a>
                     <a href="https://www.instagram.com/slow_alchimiste?igsh=dWVhb3ozYm55MnJn/" target="_blank"
-                        class="social-icon" aria-label="Instagram">
+                        class="social-icon" aria-label="Compte Instagram slow_alchimiste">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="https://fr.linkedin.com/in/morganeberge/" target="_blank" class="social-icon"
-                        aria-label="LinkedIn">
+                        aria-label="Compte LinkedIn de ....">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
@@ -76,7 +78,7 @@
     </header>
 
     <main>
-        <section class="hero" aria-labelledby="hero-title scroll-reveal">
+        <section id="accueil" class="hero" aria-labelledby="hero-title scroll-reveal">
             <div class="container inner">
                 <div>
                     <h1 id="hero-title" class="scroll-reveal">Créez un site moderne, rapide et accessible</h1>
@@ -164,7 +166,7 @@
                 <div class="portfolio-grid">
                     <div class="portfolio-item web scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site1.jpg" alt="Projet Web 1" loading="lazy">
+                            <img src="images/site1.jpg" alt="image d'un herisson" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Site E-commerce Moderne</h3>
                                 <p>Développement front-end et UI/UX.</p>
@@ -174,7 +176,7 @@
                     </div>
                     <div class="portfolio-item design scroll-reveal">
                         <div class="item-inner">
-                            <img src="./images/site2.jpg" alt="Projet Design 1" loading="lazy">
+                            <img src="./images/site2.jpg" alt="image d'un crocodile" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Application Mobile Intuitive</h3>
                                 <p>Design d'interface et expérience utilisateur.</p>
@@ -184,7 +186,7 @@
                     </div>
                     <div class="portfolio-item branding scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site3.jpg" alt="Projet Branding 1" loading="lazy">
+                            <img src="images/site3.jpg" alt="image d'un aigle" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Identité Visuelle Complète</h3>
                                 <p>Logo, charte graphique et supports.</p>
@@ -194,7 +196,7 @@
                     </div>
                     <div class="portfolio-item web scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site4.jpg" alt="Projet Web 2" loading="lazy">
+                            <img src="images/site4.jpg" alt="image d'un taureau" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Plateforme de Réservation</h3>
                                 <p>Développement Full-Stack.</p>
@@ -255,7 +257,7 @@
         <section class="section" id="contact">
             <div class="container">
                 <h2 class="h2-form">Contactez-nous</h2>
-                <div class="form-container">
+                <div class="form-container" aria-label="formulaire de contact">
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" class="form-input" placeholder=" " required>
@@ -272,9 +274,15 @@
                             <label class="form-label">Message</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"
+                            aria-label="Envoyer le messages">
                             Envoyer le message
                         </button>
+                        <p class="rgpd-info" style="font-size: 0.95em; color: #666; margin-top: 10px;">
+                            Les informations recueillies via ce formulaire sont uniquement destinées à répondre à votre
+                            demande. Pour en savoir plus, consultez notre <a href="confidentialite.html">politique de
+                                confidentialité</a>.
+                        </p>
                     </form>
                 </div>
             </div>
@@ -286,8 +294,43 @@
         <div class="container">
             <p>&copy; 2025 Bison. Tous droits réservés.</p>
             <p>Créé avec passion et innovation</p>
+            <p>
+                <a href="mentions-legales.html">Mentions légales</a> |
+                <a href="confidentialite.html">Politique de confidentialité</a>
+            </p>
         </div>
     </footer>
+
+    <!-- Bannière cookies moderne -->
+    <div id="cookie-banner" class="cookie-banner" style="display:none;">
+        <div class="cookie-content">
+            <div class="cookie-icon">
+                <!-- Icône cookie SVG moderne -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+                    <circle cx="19" cy="19" r="19" fill="#fff" fill-opacity="0.18" />
+                    <path
+                        d="M28 19a9 9 0 1 1-9-9c0 .6.4 1 1 1a2 2 0 0 0 2-2c0-.6-.4-1-1-1A11 11 0 1 0 30 21c-.6 0-1-.4-1-1a2 2 0 0 0-2-2c-.6 0-1 .4-1 1z"
+                        fill="#F7C873" />
+                    <circle cx="15" cy="22" r="1.5" fill="#F7C873" />
+                    <circle cx="23" cy="16" r="1" fill="#F7C873" />
+                    <circle cx="22" cy="25" r="1" fill="#F7C873" />
+                </svg>
+            </div>
+            <div class="cookie-text">
+                <strong>🍪 Cookies & confidentialité</strong><br>
+                Nous utilisons des cookies pour garantir la meilleure expérience sur notre site, analyser le trafic et
+                personnaliser le contenu.<br>
+                <span style="font-size:0.97em;">
+                    Vous pouvez accepter ou refuser leur utilisation. <a href="confidentialite.html"
+                        style="color:var(--accent);text-decoration:underline;">En savoir plus</a>
+                </span>
+            </div>
+            <div class="cookie-actions">
+                <button id="cookie-accept" class="btn btn-primary" aria-label="Accepter les cookies">Accepter</button>
+                <button id="cookie-decline" class="btn btn-secondary" aria-label="Refuser les cookies">Refuser</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

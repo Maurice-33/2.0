@@ -44,29 +44,10 @@ body::before {
     /* Toujours derrière */
 }
 
-/* 📱 Mobile : pas de background fixed (bug iOS/Android) */
-@media (max-width: 768px) {
-    body {
-        background-attachment: scroll;
-        /* Désactive le fixed */
-        background-size: cover;
-        background-position: center 20%;
-    }
-}
-
-/* 💻 Tablette : on ajuste un peu la position */
-@media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        background-position: center 20%;
-    }
-}
-
-/* 🖥️ Grand écran : on garde la version fixe et centrée */
-@media (min-width: 1025px) {
-    body {
-        background-attachment: cover;
-        background-position: center 10%;
-    }
+html,
+body {
+    overflow-x: hidden;
+    /* empêche le swipe horizontal */
 }
 
 .site-container {
@@ -746,6 +727,31 @@ h1 {
 }
 
 /* --- Responsive Media Queries --- */
+/* 📱 Mobile : pas de background fixed (bug iOS/Android) */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        /* Désactive le fixed */
+        background-size: cover;
+        background-position: center 20%;
+    }
+}
+
+/* 💻 Tablette : on ajuste un peu la position */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        background-position: center 20%;
+    }
+}
+
+/* 🖥️ Grand écran : on garde la version fixe et centrée */
+@media (min-width: 1025px) {
+    body {
+        background-attachment: cover;
+        background-position: center 10%;
+    }
+}
+
 @media (max-width: 1024px) {
     body {
         /* ANNOTATION: La propriété 'contain' redimensionne l'image pour qu'elle soit entièrement visible */
@@ -936,4 +942,96 @@ h1 {
     color: var(--light);
     padding: 20px 0;
     text-align: center;
+}
+
+/* Bannière cookies moderne et transparente */
+.cookie-banner {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 40, 0.65);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-radius: 22px;
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    color: #fff;
+    padding: 22px 32px;
+    z-index: 3000;
+    max-width: 420px;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.6s;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+
+.cookie-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.cookie-icon {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookie-text {
+    text-align: center;
+    font-size: 1.08em;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.cookie-banner .btn.btn-primary {
+    background: var(--accent, #F7C873);
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cookie-banner .btn.btn-primary:hover {
+    background: #ffd580;
+}
+
+.cookie-banner .btn.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cookie-banner .btn.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent, #F7C873);
+}
+
+@media (max-width: 600px) {
+    .cookie-banner {
+        padding: 14px 6px;
+        max-width: 98vw;
+    }
+
+    .cookie-text {
+        font-size: 1em;
+    }
 }
