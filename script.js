@@ -552,138 +552,153 @@ window.addEventListener('load', () => {
   }
 });
 
-// --- Switch de langue FR/EN multi-boutons et traduction complète ---
+// --- Switch de langue FR/EN et traduction complète ---
+// --- Switch de langue FR/EN et traduction complète ---
 const translations = {
-  fr: {
-    accueil: 'Accueil',
-    services: 'Services',
-    portfolio: 'Portfolio',
-    contact: 'Contact',
-    heroTitle: 'Créez un site moderne, rapide et accessible',
-    heroSubtitle: 'Un point de départ élégant avec dark mode, animations douces, composants réutilisables, et bonnes pratiques. Déployez en quelques minutes sur GitHub Pages.',
-    voirExemples: 'Voir les exemples',
-    meContacter: 'Me contacter',
-    mesServices: 'Mes Services',
-    mescréations: 'Mes Créations Numériques',
-    servicesSubtitle: 'Créons Ensemble Votre Avenir Numérique',
-    webDev: 'Web développement',
-    monTravail: 'Découvrez mon travail, une fusion d innovation et de design.',
-    all: 'Tous',
-    website: 'Sites web',
-    avis: 'Mes Avis',
-    avis1: 'Design élégant, chargement ultra-rapide. Parfait pour lancer un produit. <footer class="avis-footer">— Morgane, Marketeuse</footer>',
-    avis2: 'Accessible au clavier et aux lecteurs d’écran, bravo ! <footer class="avis-footer">— Taïko, CM</footer>',
-    avis3: 'Le mode sombre automatique est un vrai plus pour les visiteurs nocturnes. <footer class="avis-footer">— Andy, dev</footer>',
-    contactez: 'contactez-moi',
-    formName: 'Nom complet',
-    formEmail: 'Adresse email',
-    formMessage: 'Votre message',
-    formBtn: 'Envoyer',
-    infoForm: 'Les informations recueillies via ce formulaire sont uniquement destinées à répondre à votre demande. Pour en savoir plus, consultez politique de confidentialité'
-  },
+  fr: {
+    accueil: 'Accueil',
+    services: 'Services',
+    portfolio: 'Portfolio',
+    contact: 'Contact',
+    heroTitle: 'Créez un site moderne, rapide et accessible',
+    heroSubtitle: 'Un point de départ élégant avec dark mode, animations douces, composants réutilisables, et bonnes pratiques. Déployez en quelques minutes sur GitHub Pages.',
+    voirExemples: 'Voir les exemples',
+    meContacter: 'Me contacter',
+    mesServices: 'Mes Services',
+    mescréations: 'Mes Créations Numériques',
+    servicesSubtitle: 'Créons Ensemble Votre Avenir Numérique',
+    webDev: 'Web développement',
+    monTravail: 'Découvrez mon travail, une fusion d innovation et de design.',
+    all: 'Tous',
+    website: 'Sites web',
+    avis: 'Mes Avis',
+    avis1: 'Design élégant, chargement ultra-rapide. Parfait pour lancer un produit. <footer class="avis-footer">— Morgane, Marketeuse</footer>',
+    avis2: 'Accessible au clavier et aux lecteurs d’écran, bravo ! <footer class="avis-footer">— Taïko, CM</footer>',
+    avis3: 'Le mode sombre automatique est un vrai plus pour les visiteurs nocturnes. <footer class="avis-footer">— Andy, dev</footer>',
+    contactez: 'contactez-moi',
+    formName: 'Nom complet',
+    formEmail: 'Adresse email',
+    formMessage: 'Votre message',
+    formBtn: 'Envoyer',
+    infoForm: 'Les informations recueillies via ce formulaire sont uniquement destinées à répondre à votre demande. Pour en savoir plus, consultez politique de confidentialité'
+  },
 
-  en: {
-    accueil: 'Home',
-    services: 'Services',
-    portfolio: 'Portfolio',
-    contact: 'Contact',
-    heroTitle: 'Create a modern, fast and accessible website',
-    heroSubtitle: 'A stylish starting point with dark mode, smooth animations, reusable components, and best practices. Deploy in minutes on GitHub Pages.',
-    voirExemples: 'See examples',
-    meContacter: 'Contact me',
-    mesServices: 'My Services',
-    mescréations: 'My Digital Creations',
-    servicesSubtitle: 'Let’s Build Your Digital Future Together',
-    webDev: 'Web development',
-    monTravail: 'See my work, a blend of innovation and design.',
-    all: 'All',
-    website: 'Websites',
-    avis: 'My Testimonials',
-    avis1: 'Elegant design, ultra-fast loading. Perfect for launching a product. <footer class="avis-footer">— Morgane, Marketer</footer>',
-    avis2: 'Keyboard and screen reader accessible, well done! <footer class="avis-footer">— Taïko, CM</footer>',
-    avis3: 'Auto dark mode is a real plus for night visitors. <footer class="avis-footer">— Andy, dev</footer>',
-    contactez: 'contact me',
-    formName: 'Full name',
-    formEmail: 'Email address',
-    formMessage: 'Your message',
-    formBtn: 'Send',
-    infoForm: 'The information collected via this form is solely intended to respond to your request. For more information, see the privacy policy.'
-  }
+  en: {
+    accueil: 'Home',
+    services: 'Services',
+    portfolio: 'Portfolio',
+    contact: 'Contact',
+    heroTitle: 'Create a modern, fast and accessible website',
+    heroSubtitle: 'A stylish starting point with dark mode, smooth animations, reusable components, and best practices. Deploy in minutes on GitHub Pages.',
+    voirExemples: 'See examples',
+    meContacter: 'Contact me',
+    mesServices: 'My Services',
+    mescréations: 'My Digital Creations',
+    servicesSubtitle: 'Let’s Build Your Digital Future Together',
+    webDev: 'Web development',
+    monTravail: 'See my work, a blend of innovation and design.',
+    all: 'All',
+    website: 'Websites',
+    avis: 'My Testimonials',
+    avis1: 'Elegant design, ultra-fast loading. Perfect for launching a product. <footer class="avis-footer">— Morgane, Marketer</footer>',
+    avis2: 'Keyboard and screen reader accessible, well done! <footer class="avis-footer">— Taïko, CM</footer>',
+    avis3: 'Auto dark mode is a real plus for night visitors. <footer class="avis-footer">— Andy, dev</footer>',
+    contactez: 'contact me',
+    formName: 'Full name',
+    formEmail: 'Email address',
+    formMessage: 'Your message',
+    formBtn: 'Send',
+    infoForm: 'The information collected via this form is solely intended to respond to your request. For more information, see the privacy policy.'
+  }
 };
 
-function setLang(lang) {
-  // Traduction dynamique
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang][key]) {
-      el.innerHTML = translations[lang][key]; // innerHTML pour les textes avec <footer>
-    }
-  });
-
-  // Menu navigation
-  const navLinks = document.querySelectorAll('.nav a');
-  if (navLinks.length >= 4) {
-    navLinks[0].childNodes[1].nodeValue = translations[lang].accueil;
-    navLinks[1].textContent = translations[lang].services;
-    navLinks[2].textContent = translations[lang].portfolio;
-    navLinks[3].textContent = translations[lang].contact;
-  }
-
-  // Title
-  document.title = translations[lang].heroTitle;
-
-  // Hero subtitle
-  const heroSubtitle = document.querySelector('.lead');
-  if (heroSubtitle) heroSubtitle.textContent = translations[lang].heroSubtitle;
-
-  // Formulaire
-  const nameLabel = document.querySelector('label[for="name"]');
-  if (nameLabel) nameLabel.textContent = translations[lang].formName;
-  const emailLabel = document.querySelector('label[for="email"]');
-  if (emailLabel) emailLabel.textContent = translations[lang].formEmail;
-  const messageLabel = document.querySelector('label[for="message"]');
-  if (messageLabel) messageLabel.textContent = translations[lang].formMessage;
-  const formBtn = document.querySelector('#contactForm button[type="submit"]');
-  if (formBtn) formBtn.textContent = translations[lang].formBtn;
-
-  // Sauvegarde
-  localStorage.setItem('lang', lang);
-
-  // Mise à jour des boutons
-  updateLangButtonDisplay(lang);
-}
-
 function updateLangButtonDisplay(currentLang) {
-  const btnFR = document.querySelector('.lang-btn-fr');
-  const btnEN = document.querySelector('.lang-btn-en');
-
-  if (!btnFR || !btnEN) return;
-
-  if (currentLang === 'fr') {
-    btnFR.style.display = "none";     // Masque FR
-    btnEN.style.display = "inline-block"; // Affiche EN
-  } else {
-    btnFR.style.display = "inline-block"; // Affiche FR
-    btnEN.style.display = "none";     // Masque EN
-  }
+    // Sélectionne TOUS les boutons qui ont la classe lang-switch-btn (Desktop et Mobile)
+    const switchBtns = document.querySelectorAll('.lang-switch-btn');
+    
+    // Met à jour le texte pour chaque bouton
+    switchBtns.forEach(btn => {
+        if (currentLang === 'fr') {
+            // Si la langue actuelle est FR, le bouton doit proposer EN
+            btn.textContent = 'EN';
+            btn.setAttribute('aria-label', 'Change to English');
+        } else {
+            // Si la langue actuelle est EN, le bouton doit proposer FR
+            btn.textContent = 'FR';
+            btn.setAttribute('aria-label', 'Changer en Français');
+        }
+    });
 }
+
+function setLang(lang) {
+    // 1. Traduction dynamique des éléments [data-i18n]
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // 2. Traduction des liens de navigation spécifiques
+    const navLinks = document.querySelectorAll('.nav a');
+    if (navLinks.length >= 4) {
+        // Mise à jour du texte du lien 'Accueil' (nœud de texte après l'image)
+        if (navLinks[0].childNodes.length > 1) { 
+            navLinks[0].childNodes[1].nodeValue = translations[lang].accueil;
+        }
+        navLinks[1].textContent = translations[lang].services;
+        navLinks[2].textContent = translations[lang].portfolio;
+        navLinks[3].textContent = translations[lang].contact;
+    }
+
+    // 3. Traduction des autres éléments spécifiques
+    document.title = translations[lang].heroTitle;
+    
+    const heroSubtitle = document.querySelector('.lead');
+    if (heroSubtitle) heroSubtitle.textContent = translations[lang].heroSubtitle;
+
+    // Traduction des labels de formulaire (logique gardée de ton code)
+    const nameLabel = document.querySelector('label[for="name"]');
+    if (nameLabel) nameLabel.textContent = translations[lang].formName;
+    const emailLabel = document.querySelector('label[for="email"]');
+    if (emailLabel) emailLabel.textContent = translations[lang].formEmail;
+    const messageLabel = document.querySelector('label[for="message"]');
+    if (messageLabel) messageLabel.textContent = translations[lang].formMessage;
+    const formBtn = document.querySelector('#contactForm button[type="submit"]');
+    if (formBtn) formBtn.textContent = translations[lang].formBtn;
+
+
+    // 4. Sauvegarde et mise à jour de l'affichage du bouton
+    localStorage.setItem('lang', lang);
+    updateLangButtonDisplay(lang);
+}
+
 
 function detectDefaultLang() {
-  const browserLang = navigator.language || navigator.userLanguage;
-  return browserLang.startsWith('fr') ? 'fr' : 'en';
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.startsWith('fr') ? 'fr' : 'en';
 }
 
+
+// --- Point d'entrée : Le code commence ici après le chargement du DOM ---
 document.addEventListener("DOMContentLoaded", () => {
-  const btnFR = document.querySelector('.lang-btn-fr');
-  const btnEN = document.querySelector('.lang-btn-en');
+    // 1. Initialisation de la langue au chargement
+    const savedLang = localStorage.getItem('lang') || detectDefaultLang();
+    setLang(savedLang);
 
-  if (btnFR) {
-    btnFR.addEventListener('click', () => setLang('fr'));
-  }
-  if (btnEN) {
-    btnEN.addEventListener('click', () => setLang('en'));
-  }
+    // 2. Écouteur d'événement sur TOUS les boutons de bascule (Desktop et Mobile)
+    const switchBtns = document.querySelectorAll('.lang-switch-btn');
 
-  const savedLang = localStorage.getItem('lang') || detectDefaultLang();
-  setLang(savedLang);
+    switchBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Récupère la langue actuelle (sauvegardée par setLang)
+            const currentLang = localStorage.getItem('lang') || detectDefaultLang();
+            
+            // Détermine la nouvelle langue
+            const newLang = (currentLang === 'fr') ? 'en' : 'fr';
+            
+            // Applique la nouvelle langue
+            setLang(newLang);
+        });
+    });
 });

@@ -201,8 +201,7 @@ body::before {
 
 /* Correction des styles pour le bouton de langue (lang-btn-fr et lang-btn-en) */
 /* Utilisation de lang-btn-fr et lang-btn-en pour plus de précision et de flexibilité */
-.lang-btn-fr,
-.lang-btn-en {
+.lang-btn {
     /* Réinitialisation de l'apparence par défaut des boutons */
     background: none;
     border: none;
@@ -221,8 +220,7 @@ body::before {
     padding: 5px 10px;
 }
 
-.lang-btn-fr:hover,
-.lang-btn-en:hover {
+.lang-btn:hover {
     color: var(--accent);
     transform: scale(1.1);
 }
