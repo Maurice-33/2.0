@@ -786,9 +786,27 @@ h1 {
     text-align: center;
 }
 
+.footer-spacer {
+    /* La largeur par défaut sera gérée par flexbox */
+}
+
+/* Appliquez flex: 1 de manière égale aux espaces */
+.footer-spacer,
+.share-buttons {
+    /* Les deux côtés doivent "peser" le même poids */
+    flex: 0 1 auto; 
+    /* Ou, pour le centrage visuel le plus précis, assurez-vous que les deux éléments 
+       latéraux sont traités de manière égale par Flexbox. */
+}
+
+.footer-spacer {
+    /* Cet élément doit prendre la même place que les boutons. */
+    width: 0; /* Commence avec une largeur nulle */
+    padding-left: 35px; /* Ajoutez un padding pour simuler l'espace de décalage des boutons */
+}
+
 .footer .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -814,6 +832,7 @@ h1 {
     gap: 8px;
     margin: 0;
     justify-content: flex-end;
+    padding-right: 35px;
 }
 
 .btn-share {
