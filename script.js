@@ -349,20 +349,9 @@ document.querySelectorAll('.portfolio-item').forEach(el => {
 document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.querySelector(".hamburger-menu");
     const body = document.body;
-
     if (hamburger) {
         hamburger.addEventListener("click", () => {
             body.classList.toggle("menu-open");
-
-            // Change icône (burger ↔ croix)
-            const icon = hamburger.querySelector("i");
-            if (body.classList.contains("menu-open")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-times");
-            } else {
-                icon.classList.remove("fa-times");
-                icon.classList.add("fa-bars");
-            }
         });
     }
 
