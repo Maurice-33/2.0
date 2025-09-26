@@ -172,7 +172,7 @@ body::before {
     gap: 15px; /* Ajouté pour espacer les boutons sociaux du bouton de langue/thème */
     
     position: fixed;
-    top: 20px;
+    top: 40px;
     right: 20px;
     z-index: 1000;
     backdrop-filter: blur(20px);
