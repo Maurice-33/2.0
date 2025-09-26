@@ -4,5 +4,7 @@
 !style.css
 !index.html
 !script.js
+!confidentialite.html
+!mentions-legales.html
 # Ne pas ignorer le dossier .gitignore lui-même
 !.gitignore

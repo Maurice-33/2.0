@@ -26,16 +26,20 @@
 
 <body>
 
+    <!-- Loader animé -->
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Chargement...</div>
+    </div>
+
     <header class="main-header">
         <div class="nav-container">
             <nav class="nav" aria-label="Navigation principale">
-                <ul>
-                    <li>
-                        <a href="#accueil" class="logo-and-link" data-section="home">
-                            <img src="bison.png" alt="Logo de l'entreprise">
+                    <a data-i18n="accueil" href="#accueil" class="logo-and-link" data-section="home">
+                        <img src="bison.png" alt="Logo Bison, tête de bison stylisée">
                             Accueil
-                        </a>
-                    </li>
+                    </a>
+                <ul>
                     <li><a href="#services" data-section="services">Services</a></li>
                     <li><a href="#portfolio" data-section="portfolio">Portfolio</a></li>
                     <li><a href="#contact" data-section="contact">Contact</a></li>
@@ -53,6 +57,7 @@
                         aria-label="Compte LinkedIn de ....">
                         <i class="fab fa-linkedin"></i>
                     </a>
+                    <button class="lang-btn lang-btn-en" aria-label="Changer la langue">EN</button>
                 </div>
             </nav>
             <button class="hamburger-menu" aria-label="Ouvrir le menu sur mobile et petit écran">
@@ -72,6 +77,7 @@
                         aria-label="Compte LinkedIn de ....">
                         <i class="fab fa-linkedin"></i>
                     </a>
+                    <button class="lang-btn lang-btn-en" aria-label="Changer la langue">EN</button>
                 </div>
             </div>
         </div>
@@ -81,13 +87,13 @@
         <section id="accueil" class="hero" aria-labelledby="hero-title scroll-reveal">
             <div class="container inner">
                 <div>
-                    <h1 id="hero-title" class="scroll-reveal">Créez un site moderne, rapide et accessible</h1>
-                    <p class="lead">Un point de départ élégant avec dark mode, animations douces, composants
+                    <h1 data-i18n="heroTitle" id="hero-title" class="scroll-reveal">Créez un site moderne, rapide et accessible</h1>
+                    <p data-i18n="heroSubtitle" class="lead">Un point de départ élégant avec dark mode, animations douces, composants
                         réutilisables, et
                         bonnes pratiques. Déployez en quelques minutes sur GitHub Pages.</p>
                     <div class="cta-group" style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
-                        <a class="btn btn-primary" href="#portfolio">Voir les exemples</a>
-                        <a class="btn btn-secondary" href="#contact">Me contacter</a>
+                        <a data-i18n="voirExemples" class="btn btn-primary" href="#portfolio">Voir les exemples</a>
+                        <a data-i18n="meContacter" class="btn btn-secondary" href="#contact">Me contacter</a>
                     </div>
                 </div>
             </div>
@@ -97,8 +103,8 @@
 
         <section id="services" class="services-section scroll-reveal">
             <div class="container">
-                <h2 class="h2-form">Mes Services</h2>
-                <p class="section-subtitle">Créons Ensemble Votre Avenir Numérique</p>
+                <h2 data-i18n="mesServices" class="h2-form">Mes Services</h2>
+                <p data-i18n="servicesSubtitle" class="section-subtitle">Créons Ensemble Votre Avenir Numérique</p>
                 <div class="row">
 
                     <div class="col">
@@ -153,12 +159,12 @@
 
         <section id="portfolio" class="portfolio-section scroll-reveal">
             <div class="container">
-                <h2 class="h2-form">Mes Créations Numériques</h2>
-                <p class="section-subtitle">Découvrez mon travail, une fusion d'innovation et de design.</p>
+                <h2 data-i18n="mescréations" class="h2-form">Mes Créations Numériques</h2>
+                <p data-i18n="monTravail" class="section-subtitle">Découvrez mon travail, une fusion d'innovation et de design.</p>
 
                 <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="all">Tout</button>
-                    <button class="filter-btn" data-filter="web">Sites Web</button>
+                    <button data-i18n="all" class="filter-btn active" data-filter="all">Tout</button>
+                    <button data-i18n="website" class="filter-btn" data-filter="web">Sites Web</button>
                     <button class="filter-btn" data-filter="design">Design UI/UX</button>
                     <button class="filter-btn" data-filter="branding">Branding</button>
                 </div>
@@ -166,7 +172,7 @@
                 <div class="portfolio-grid">
                     <div class="portfolio-item web scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site1.jpg" alt="image d'un herisson" loading="lazy">
+                            <img src="images/site1.jpg" alt="Aperçu site e-commerce moderne, hérisson, projet web" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Site E-commerce Moderne</h3>
                                 <p>Développement front-end et UI/UX.</p>
@@ -176,7 +182,7 @@
                     </div>
                     <div class="portfolio-item design scroll-reveal">
                         <div class="item-inner">
-                            <img src="./images/site2.jpg" alt="image d'un crocodile" loading="lazy">
+                            <img src="./images/site2.jpg" alt="Aperçu application mobile intuitive, crocodile, projet design" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Application Mobile Intuitive</h3>
                                 <p>Design d'interface et expérience utilisateur.</p>
@@ -186,7 +192,7 @@
                     </div>
                     <div class="portfolio-item branding scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site3.jpg" alt="image d'un aigle" loading="lazy">
+                            <img src="images/site3.jpg" alt="Aperçu identité visuelle complète, aigle, projet branding" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Identité Visuelle Complète</h3>
                                 <p>Logo, charte graphique et supports.</p>
@@ -196,7 +202,7 @@
                     </div>
                     <div class="portfolio-item web scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site4.jpg" alt="image d'un taureau" loading="lazy">
+                            <img src="images/site4.jpg" alt="Aperçu plateforme de réservation, taureau, projet web" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Plateforme de Réservation</h3>
                                 <p>Développement Full-Stack.</p>
@@ -206,7 +212,7 @@
                     </div>
                     <div class="portfolio-item design scroll-reveal">
                         <div class="item-inner">
-                            <img src="images/site5.jpg" alt="Projet Design 2" loading="lazy">
+                            <img src="images/site5.jpg" alt="Aperçu refonte de site corporate, projet design" loading="lazy">
                             <div class="item-overlay">
                                 <h3>Refonte de Site Corporate</h3>
                                 <p>Amélioration de l'UX et design moderne.</p>
@@ -234,17 +240,17 @@
         <!-- Témoignages -->
         <section class="section" id="avis">
             <div class="container">
-                <h2 class="h2-form">Mes Avis</h2>
+                <h2 data-i18n="avis" class="h2-form">Mes Avis</h2>
                 <div class="testimonials">
-                    <blockquote class="quote card reveal">Design élégant, charge ultra‑rapide. Parfait pour lancer
+                    <blockquote data-i18n="avis1" class="quote card reveal">Design élégant, charge ultra‑rapide. Parfait pour lancer
                         un produit.
                         <footer class="avis-footer">— Morgane, Brandeuse</footer>
                     </blockquote>
-                    <blockquote class="quote card reveal">Accessible au clavier et lecteur d'écran, bravo ! <footer
+                    <blockquote data-i18n="avis2" class="quote card reveal">Accessible au clavier et lecteur d'écran, bravo ! <footer
                             class="avis-footer">
                             — Taïko, CM</footer>
                     </blockquote>
-                    <blockquote class="quote card reveal">Le dark mode auto est un vrai plus pour les visiteurs
+                    <blockquote data-i18n="avis3" class="quote card reveal">Le dark mode auto est un vrai plus pour les visiteurs
                         nocturnes.
                         <footer class="avis-footer">— Andy, dev</footer>
                     </blockquote>
@@ -256,29 +262,29 @@
 
         <section class="section" id="contact">
             <div class="container">
-                <h2 class="h2-form">Contactez-nous</h2>
+                <h2 data-i18n="contactez" class="h2-form">Contactez-nous</h2>
                 <div class="form-container" aria-label="formulaire de contact">
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" class="form-input" placeholder=" " required>
-                            <label class="form-label">Nom complet</label>
+                            <label data-i18n="formName" class="form-label">Nom complet</label>
                         </div>
 
                         <div class="form-group">
                             <input type="email" class="form-input" placeholder=" " required>
-                            <label class="form-label">Adresse email</label>
+                            <label data-i18n="formEmail" class="form-label">Adresse email</label>
                         </div>
 
                         <div class="form-group">
                             <textarea class="form-input" rows="5" placeholder=" " required></textarea>
-                            <label class="form-label">Message</label>
+                            <label data-i18n="formMessage" class="form-label">Message</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;"
+                        <button data-i18n="formBtn" type="submit" class="btn btn-primary" style="width: 100%;"
                             aria-label="Envoyer le messages">
                             Envoyer le message
                         </button>
-                        <p class="rgpd-info" style="font-size: 0.95em; color: #666; margin-top: 10px;">
+                        <p data-i18n="infoForm" class="rgpd-info" style="font-size: 0.95em; color: #666; margin-top: 10px;">
                             Les informations recueillies via ce formulaire sont uniquement destinées à répondre à votre
                             demande. Pour en savoir plus, consultez notre <a href="confidentialite.html">politique de
                                 confidentialité</a>.
@@ -291,6 +297,9 @@
     </div>
 
     <hr class="section-divider">
+    <button id="scrollToTop" aria-label="Remonter en haut" class="scroll-to-top" style="display:none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <footer class="footer">
         <div class="container footer-flex">
             <div class="footer-text">

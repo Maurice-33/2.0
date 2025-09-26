@@ -4,15 +4,38 @@
     --primary: #72B38F;
     --secondary: #72B3B0;
     --accent: #75B372;
+    /* Couleurs mode clair par défaut (Dark Background) */
     --dark: #0f0f23;
     --light: #f8fafc;
     --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    /* Nouvelle variable RGB pour les overlays (nécessaire pour .item-overlay) */
+    --dark-rgb: 15, 15, 35; /* Correspond à #0f0f23 */
 }
+
+/* --- Styles du mode sombre (Dark Mode) --- */
+/* Ces variables sont écrasées si la classe 'dark-mode' est appliquée au body */
+body.dark-mode {
+    /* Le texte devient sombre (le light par défaut) */
+    --dark: #f8fafc;
+    /* L'arrière-plan devient clair (le dark par défaut) */
+    --light: #0f0f23; 
+    /* Met à jour la variable RGB pour les overlays */
+    --dark-rgb: 248, 250, 252; /* Correspond à #f8fafc, pour un overlay sombre en mode clair */
+    
+    /* Optionnel : Si vous utilisez une image de fond, vous voudrez peut-être changer de fond ou le masquer ici */
+    /* background-color: var(--light); */
+}
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    /* Évite la barre de défilement horizontale globale */
+    overflow-x: hidden;
 }
 
 body {
@@ -22,13 +45,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
-    /* On supprime le background direct */
-    background: none;
+    background: none; /* Reste sans background car géré par ::before */
     position: relative;
     z-index: 0;
 }
 
+/* Style de l'image de fond fixe */
 body::before {
     content: "";
     position: fixed;
@@ -41,91 +63,9 @@ body::before {
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    /* Toujours derrière */
 }
 
-html,
-body {
-    overflow-x: hidden;
-    /* empêche le swipe horizontal */
-}
-
-.site-container {
-    flex: 1;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* --- Animations & Effets --- */
-
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-/* Animation d'apparition au scroll */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    filter: blur(5px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
-}
-
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-}
-
-/* Animation flottante de la barre de nav */
-@keyframes navFloat {
-
-    0%,
-    100% {
-        transform: translateX(-50%) translateY(0px);
-    }
-
-    50% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
-
-/* Animations du Modal */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* --- Navigation & Header --- */
-.main-header {
-    position: relative;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-}
+/* --- Menu de Navigation (Desktop) --- */
 
 .nav-container {
     display: flex;
@@ -147,9 +87,33 @@ body {
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    padding: 10px 30px;
+    padding: 10px 40px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: navFloat 3s ease-in-out infinite;
+}
+
+/* L'élément du logo a besoin de ses propres styles pour se démarquer */
+.logo-and-link {
+    /* Style par défaut d'un lien nav, mais pour le logo */
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex; /* Pour aligner l'image et le texte "Accueil" */
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+}
+
+.nav .logo-and-link img {
+    height: 60px !important;
+    width: auto;
+    display: block;
+}
+
+/* Vous voudrez peut-être masquer le texte 'Accueil' à côté du logo */
+.logo-and-link:not(:has(img)) {
+    /* Sélecteur pour cibler le texte si vous le laissez */
 }
 
 .nav ul {
@@ -169,7 +133,6 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    /* centre texte + logo verticalement */
     gap: 8px;
     padding: 5px 10px;
 }
@@ -195,23 +158,21 @@ body {
     width: 100%;
 }
 
-.nav img {
-    height: 32px;
-    /* réduit un peu pour correspondre à la taille du texte */
-    width: auto;
-    display: block;
-}
-
-.nav .logo-and-link img {
-    height: 60px;
-    width: auto;
+.nav .header-socials-desktop {
+    /* Par défaut, caché sur desktop, sera affiché via JS pour les menus mobiles */
+    display: none; 
 }
 
 
-/* Boutons sociaux */
+/* --- Boutons Sociaux et Langue (Header Droit) --- */
+
 .header-right {
+    display: flex; /* Assure que les éléments sont alignés horizontalement */
+    align-items: center;
+    gap: 15px; /* Ajouté pour espacer les boutons sociaux du bouton de langue/thème */
+    
     position: fixed;
-    top: 40px;
+    top: 20px;
     right: 20px;
     z-index: 1000;
     backdrop-filter: blur(20px);
@@ -220,7 +181,6 @@ body {
     padding: 10px 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: navFloat 3s ease-in-out infinite;
-    align-items: center;
 }
 
 .header-socials-desktop {
@@ -239,11 +199,54 @@ body {
     color: var(--accent);
 }
 
+/* Correction des styles pour le bouton de langue (lang-btn-fr et lang-btn-en) */
+/* Utilisation de lang-btn-fr et lang-btn-en pour plus de précision et de flexibilité */
+.lang-btn-fr,
+.lang-btn-en {
+    /* Réinitialisation de l'apparence par défaut des boutons */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit; /* Utilise la police générale */
+    
+    /* Styles du texte et de la couleur */
+    color: var(--light); 
+    font-size: 14px; /* Augmenté de 10px à 14px pour la lisibilité */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s;
+    
+    /* Pour avoir l'aspect "texte" avec un peu d'espace si vous voulez */
+    /* Si vous voulez que les boutons de langue aient un peu de padding pour être plus cliquables, utilisez : */
+    padding: 5px 10px;
+}
+
+.lang-btn-fr:hover,
+.lang-btn-en:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* Style pour le bouton de thème (fa-sun / fa-moon) */
+.theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 15px; 
+    cursor: pointer;
+    color: var(--light); 
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+}
+
 /* --- Sections de la page --- */
 /* --- Hamburger Menu --- */
 .hamburger-menu {
     display: none;
-    /* caché par défaut */
     background: none;
     border: none;
     cursor: pointer;
@@ -263,6 +266,18 @@ body {
     margin: 50px auto;
     background: var(--gradient);
     border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 /* Titres des sections */
@@ -333,7 +348,6 @@ h1 {
 
 .lead {
     font-size: clamp(16px, 2.1vw, 20px);
-    color: rgb(var(--muted))
 }
 
 /* Section Services */
@@ -472,7 +486,8 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(var(--dark-rgb), 0.85);
+    /* Utilisation de la nouvelle variable --dark-rgb */
+    background: rgba(var(--dark-rgb), 0.85); 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -514,6 +529,15 @@ h1 {
 }
 
 /* Modal de Détails de Projet */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -592,7 +616,7 @@ h1 {
 .testimonials {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem
+    gap: 1rem; /* Ajout du point-virgule manquant */
 }
 
 .quote {
@@ -619,7 +643,8 @@ h1 {
     left: 10px;
     top: -20px;
     font: 700 72px/1 serif;
-    color: rgba(var(--fg), .08)
+    /* Utilisation de var(--light) pour une meilleure gestion du mode sombre */
+    color: rgba(var(--dark-rgb), .08); 
 }
 
 .avis-footer {
@@ -635,7 +660,6 @@ h1 {
     border-radius: 20px;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Ajouté pour limiter la largeur du formulaire */
     max-width: 500px;
     margin: 0 auto;
 }
@@ -676,6 +700,32 @@ h1 {
 .form-input:not(:placeholder-shown)+.form-label {
     transform: translateY(-35px) scale(0.8);
     color: var(--accent);
+}
+
+.form-input.valid {
+    border-color: #4ade80;
+    box-shadow: 0 0 0 2px #4ade8033;
+}
+
+.form-input.invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px #ef444433;
+}
+
+.form-error {
+    color: #ef4444;
+    font-size: 0.95em;
+    margin-top: 4px;
+    position: absolute;
+    left: 0;
+    top: 100%;
+}
+
+.form-success {
+    color: #4ade80;
+    font-size: 1em;
+    margin-top: 10px;
+    text-align: center;
 }
 
 /* Boutons */
@@ -726,217 +776,9 @@ h1 {
     left: 100%;
 }
 
-/* --- Responsive Media Queries --- */
-/* 📱 Mobile : pas de background fixed (bug iOS/Android) */
-@media (max-width: 768px) {
-    body {
-        background-attachment: scroll;
-        /* Désactive le fixed */
-        background-size: cover;
-        background-position: center 20%;
-    }
-}
 
-/* 💻 Tablette : on ajuste un peu la position */
-@media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        background-position: center 20%;
-    }
-}
+/* --- Styles de Footer --- */
 
-/* 🖥️ Grand écran : on garde la version fixe et centrée */
-@media (min-width: 1025px) {
-    body {
-        background-attachment: cover;
-        background-position: center 10%;
-    }
-}
-
-@media (max-width: 1024px) {
-    body {
-        /* ANNOTATION: La propriété 'contain' redimensionne l'image pour qu'elle soit entièrement visible */
-        background-size: contain;
-        /* ANNOTATION: Le 'repeat' est désactivé pour éviter que l'image ne se répète */
-        background-repeat: no-repeat;
-        /* ANNOTATION: Le fond reste centré */
-        background-position: center top;
-    }
-
-    .main-header {
-        justify-content: space-between;
-        width: calc(100% - 40px);
-        left: 20px;
-        transform: none;
-        animation: none;
-        padding: 10px 20px;
-    }
-
-    /* Cache les éléments sur les petits et moyens écrans */
-    .nav {
-        display: none;
-    }
-
-    .nav,
-    .header-right {
-        display: none;
-    }
-
-    .header-right {
-        display: none;
-    }
-
-    .header-socials-desktop {
-        display: none;
-    }
-
-    /* Affiche le bouton hamburger */
-    .hamburger-menu {
-        display: block;
-    }
-
-    .header-container {
-        justify-content: space-between;
-        width: calc(100% - 40px);
-        left: 20px;
-        transform: none;
-        animation: none;
-    }
-
-    .nav-wrapper {
-        width: 90%;
-        left: 5%;
-        right: 5%;
-        transform: none;
-        animation: none;
-        padding: 20px;
-        border-radius: 10px;
-        flex-direction: column;
-    }
-
-    .hero .inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-image {
-        display: none;
-    }
-
-    .services-section .row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .col,
-    .quote {
-        max-width: 90%;
-    }
-
-    .section-title,
-    .h2-form {
-        font-size: 2.5em;
-    }
-
-    .section-subtitle {
-        font-size: 1.1em;
-    }
-
-    /* Styles du menu déroulant */
-    .main-header.menu-open {
-        background: none;
-        backdrop-filter: none;
-        border: none;
-        border-radius: 0;
-        animation: none;
-    }
-
-    .menu-open .nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 70px;
-        left: 50%;
-        /* centré */
-        transform: translateX(-50%);
-        /* recentre correctement */
-        width: 90%;
-        /* prend 90% de la largeur écran */
-        max-width: 400px;
-        /* évite un menu trop large */
-        backdrop-filter: blur(20px);
-        /* flou élégant */
-        background: rgba(255, 255, 255, 0.1);
-        /* transparent comme sur desktop */
-        border-radius: 20px;
-        padding: 20px;
-        gap: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        animation: none;
-    }
-
-    .menu-open .nav ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .menu-open .nav a {
-        padding: 10px;
-    }
-
-    /* Affichage des icônes sociales dans le menu déroulant */
-    .menu-open .header-socials-desktop {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .portfolio-filters {
-        flex-direction: column;
-    }
-
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
-    }
-
-    h1 {
-        font-size: 2.5em;
-    }
-
-    .lead {
-        font-size: 1em;
-    }
-
-}
-
-.nav .header-socials-desktop {
-    display: none;
-}
-
-/* En mobile, inverse : on cache la barre droite et on affiche ceux du menu */
-@media (max-width: 1024px) {
-    .header-right {
-        display: none;
-    }
-
-    .nav .header-socials-desktop {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 20px;
-    }
-}
-
-/* Footer */
 .footer {
     background-color: transparent;
     color: var(--light);
@@ -944,7 +786,60 @@ h1 {
     text-align: center;
 }
 
-/* Bannière cookies moderne et transparente */
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .container.footer-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding: 0 0 8px 0;
+}
+
+.footer-text {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-text p {
+    margin: 2px 0;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.btn-share {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1em;
+    background: var(--gradient, #72B38F);
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+
+.btn-share.facebook { background: #1877f3; }
+.btn-share.twitter { background: #1da1f2; }
+.btn-share.linkedin { background: #0077b5; }
+.btn-share.instagram { background: #e4405f; }
+
+.btn-share:hover { transform: scale(1.12); }
+
+
+/* --- Bannière Cookies --- */
+
 .cookie-banner {
     position: fixed;
     bottom: 30px;
@@ -995,7 +890,7 @@ h1 {
 }
 
 .cookie-banner .btn.btn-primary {
-    background: var(--accent, #F7C873);
+    background: var(--accent, #75B372); /* Mis à jour avec votre var(--accent) */
     color: #222;
     border: none;
     border-radius: 8px;
@@ -1006,7 +901,7 @@ h1 {
 }
 
 .cookie-banner .btn.btn-primary:hover {
-    background: #ffd580;
+    background: #a9d3a7; /* Couleur légèrement plus claire pour le survol de l'accent */
 }
 
 .cookie-banner .btn.btn-secondary {
@@ -1022,105 +917,226 @@ h1 {
 
 .cookie-banner .btn.btn-secondary:hover {
     background: rgba(255, 255, 255, 0.12);
-    color: var(--accent, #F7C873);
+    color: var(--accent);
+}
+
+
+/* --- Bouton Remonter en haut --- */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 3000;
+    background: var(--gradient, #72B38F);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.scroll-to-top:hover {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+
+/* --- Loader animé --- */
+
+#loader-overlay {
+    position: fixed;
+    z-index: 5000;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 22, 34, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s;
+}
+
+.loader-spinner {
+    border: 6px solid var(--light); /* Utilisation de la variable pour mode sombre */
+    border-top: 6px solid var(--primary, #72B38F);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spinLoader 1s linear infinite;
+    margin-bottom: 18px;
+}
+
+@keyframes spinLoader {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+    color: #fff;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+/* --- Responsive Media Queries --- */
+
+@media (max-width: 1024px) {
+    /* Suppression des sélecteurs 'header-right' et 'nav' du bloc mobile
+       pour éviter la duplication et la confusion avec la logique du menu hamburger */
+    
+    /* Affiche le bouton hamburger */
+    .hamburger-menu {
+        display: block;
+    }
+
+    /* Cache le header droit et la navigation principale sur tablette/mobile */
+    .nav,
+    .header-right {
+        display: none;
+    }
+
+    .header-container,
+    .main-header,
+    .nav-wrapper {
+        /* Correction : supprime les styles qui n'ont pas de classe correspondante */
+        /* Si main-header et header-container existent, les adapter. Sinon, retirer. */
+        /* Dans ce contexte, on les retire car ils ne sont pas définis ailleurs. */
+    }
+
+    /* Ajustements du Hero */
+    .hero .inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    .services-section .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col,
+    .quote {
+        max-width: 90%;
+    }
+
+    .section-title,
+    .h2-form {
+        font-size: 2.5em;
+    }
+
+    .section-subtitle {
+        font-size: 1.1em;
+    }
+
+    /* Styles du menu déroulant - pour le menu ouvert */
+    .menu-open .nav {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 90%;
+        max-width: 400px;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 20px;
+        gap: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: none;
+    }
+
+    .menu-open .nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu-open .nav a {
+        padding: 10px;
+    }
+
+    /* Affichage des icônes sociales dans le menu déroulant (quand il est ouvert) */
+    /* On les force à s'afficher dans le menu */
+    .menu-open .header-socials-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Correction de la gestion du background pour mobile */
+    body::before {
+        background-attachment: scroll;
+        background-size: cover; /* Maintient une taille raisonnable */
+        background-position: center top;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-filters {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .lead {
+        font-size: 1em;
+    }
+    
+    .cookie-banner {
+        /* Correction de la duplication */
+        min-width: unset; 
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    .footer .container.footer-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .share-buttons {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 600px) {
-    .cookie-banner {
-        padding: 14px 6px;
-        max-width: 98vw;
+    .scroll-to-top {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1em;
     }
-
-    .cookie-text {
-        font-size: 1em;
-    }
-}
-
-/* Boutons de partage dans le footer */
-.share-buttons {
-  display: flex;
-  gap: 12px;
-  margin: 0 0 0 24px;
-  justify-content: flex-end;
-}
-
-.btn-share {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 1.3em;
-  background: var(--gradient, #72B38F);
-  transition: background 0.2s, transform 0.2s;
-  text-decoration: none;
-}
-
-.btn-share.facebook { background: #1877f3; }
-.btn-share.twitter { background: #1da1f2; }
-.btn-share.linkedin { background: #0077b5; }
-.btn-share.instagram { background: #e4405f; }
-
-.btn-share:hover { transform: scale(1.12); }
-
-.footer .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer .container.footer-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    padding: 0 0 8px 0;
-}
-
-.footer-text {
-    flex: 1;
-    text-align: center;
-}
-.footer-text p {
-    margin: 2px 0;
-}
-
-.share-buttons {
-    display: flex;
-    gap: 8px;
-    margin: 0;
-    justify-content: flex-end;
-}
-
-.btn-share {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1em;
-    background: var(--gradient, #72B38F);
-    transition: background 0.2s, transform 0.2s;
-    text-decoration: none;
-}
-
-.btn-share.facebook { background: #1877f3; }
-.btn-share.twitter { background: #1da1f2; }
-.btn-share.linkedin { background: #0077b5; }
-.btn-share.instagram { background: #e4405f; }
-
-.btn-share:hover { transform: scale(1.12); }
-
-@media (max-width: 700px) {
-  .footer .container.footer-flex {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .share-buttons {
-    justify-content: center;
-  }
 }

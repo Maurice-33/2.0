@@ -354,15 +354,13 @@ document.addEventListener("DOMContentLoaded", () => {
             body.classList.toggle("menu-open");
         });
     }
-
     // Fermer le menu quand on clique sur un lien
     const navLinks = document.querySelectorAll(".nav a");
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
-            body.classList.remove("menu-open");
-            const icon = hamburger.querySelector("i");
-            icon.classList.remove("fa-times");
-            icon.classList.add("fa-bars");
+            if (window.innerWidth <= 1024 && body.classList.contains("menu-open")) {
+                body.classList.remove("menu-open");
+            }
         });
     });
 });
@@ -439,4 +437,253 @@ window.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.2 });
         contactObserver.observe(contactSection);
     }
+});
+
+// Bouton remonter en haut
+const scrollToTopBtn = document.getElementById('scrollToTop');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollToTopBtn.style.display = 'flex';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+});
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Validation dynamique du formulaire de contact
+const contactForm = document.getElementById('contactForm');
+const formInputs = contactForm.querySelectorAll('.form-input');
+const formGroups = contactForm.querySelectorAll('.form-group');
+const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showError(input, message) {
+    input.classList.remove('valid');
+    input.classList.add('invalid');
+    let error = input.parentElement.querySelector('.form-error');
+    if (!error) {
+        error = document.createElement('div');
+        error.className = 'form-error';
+        input.parentElement.appendChild(error);
+    }
+    error.textContent = message;
+}
+
+function showValid(input) {
+    input.classList.remove('invalid');
+    input.classList.add('valid');
+    let error = input.parentElement.querySelector('.form-error');
+    if (error) error.textContent = '';
+}
+
+function checkForm() {
+    let valid = true;
+    formInputs.forEach(input => {
+        if (input.type === 'text') {
+            if (input.value.trim().length < 2) {
+                showError(input, 'Veuillez entrer votre nom complet.');
+                valid = false;
+            } else {
+                showValid(input);
+            }
+        } else if (input.type === 'email') {
+            if (!validateEmail(input.value)) {
+                showError(input, 'Adresse email invalide.');
+                valid = false;
+            } else {
+                showValid(input);
+            }
+        } else if (input.tagName === 'TEXTAREA') {
+            if (input.value.trim().length < 5) {
+                showError(input, 'Veuillez entrer un message.');
+                valid = false;
+            } else {
+                showValid(input);
+            }
+        }
+    });
+    submitBtn.disabled = !valid;
+    return valid;
+}
+
+formInputs.forEach(input => {
+    input.addEventListener('input', checkForm);
+});
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (checkForm()) {
+        // Animation de soumission
+        gsap.to('.form-container', {
+            duration: 0.5,
+            scale: 0.98,
+            yoyo: true,
+            repeat: 1,
+            ease: 'power2.inOut'
+        });
+        setTimeout(() => {
+            // Affiche un message de succès
+            let success = contactForm.querySelector('.form-success');
+            if (!success) {
+                success = document.createElement('div');
+                success.className = 'form-success';
+                contactForm.appendChild(success);
+            }
+            success.textContent = 'Message envoyé avec succès ! 🚀';
+            contactForm.reset();
+            formInputs.forEach(input => input.classList.remove('valid'));
+            submitBtn.disabled = true;
+            setTimeout(() => { success.textContent = ''; }, 3000);
+        }, 1000);
+    }
+});
+
+// Loader animé : masque l’overlay après chargement
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader-overlay');
+  if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 600);
+  }
+});
+
+// --- Switch de langue FR/EN multi-boutons et traduction complète ---
+const translations = {
+  fr: {
+    accueil: 'Accueil',
+    services: 'Services',
+    portfolio: 'Portfolio',
+    contact: 'Contact',
+    heroTitle: 'Créez un site moderne, rapide et accessible',
+    heroSubtitle: 'Un point de départ élégant avec dark mode, animations douces, composants réutilisables, et bonnes pratiques. Déployez en quelques minutes sur GitHub Pages.',
+    voirExemples: 'Voir les exemples',
+    meContacter: 'Me contacter',
+    mesServices: 'Mes Services',
+    mescréations: 'Mes Créations Numériques',
+    servicesSubtitle: 'Créons Ensemble Votre Avenir Numérique',
+    webDev: 'Web développement',
+    monTravail: 'Découvrez mon travail, une fusion d innovation et de design.',
+    all: 'Tous',
+    website: 'Sites web',
+    avis: 'Mes Avis',
+    avis1: 'Design élégant, chargement ultra-rapide. Parfait pour lancer un produit. <footer class="avis-footer">— Morgane, Marketeuse</footer>',
+    avis2: 'Accessible au clavier et aux lecteurs d’écran, bravo ! <footer class="avis-footer">— Taïko, CM</footer>',
+    avis3: 'Le mode sombre automatique est un vrai plus pour les visiteurs nocturnes. <footer class="avis-footer">— Andy, dev</footer>',
+    contactez: 'contactez-moi',
+    formName: 'Nom complet',
+    formEmail: 'Adresse email',
+    formMessage: 'Votre message',
+    formBtn: 'Envoyer',
+    infoForm: 'Les informations recueillies via ce formulaire sont uniquement destinées à répondre à votre demande. Pour en savoir plus, consultez politique de confidentialité'
+  },
+
+  en: {
+    accueil: 'Home',
+    services: 'Services',
+    portfolio: 'Portfolio',
+    contact: 'Contact',
+    heroTitle: 'Create a modern, fast and accessible website',
+    heroSubtitle: 'A stylish starting point with dark mode, smooth animations, reusable components, and best practices. Deploy in minutes on GitHub Pages.',
+    voirExemples: 'See examples',
+    meContacter: 'Contact me',
+    mesServices: 'My Services',
+    mescréations: 'My Digital Creations',
+    servicesSubtitle: 'Let’s Build Your Digital Future Together',
+    webDev: 'Web development',
+    monTravail: 'See my work, a blend of innovation and design.',
+    all: 'All',
+    website: 'Websites',
+    avis: 'My Testimonials',
+    avis1: 'Elegant design, ultra-fast loading. Perfect for launching a product. <footer class="avis-footer">— Morgane, Marketer</footer>',
+    avis2: 'Keyboard and screen reader accessible, well done! <footer class="avis-footer">— Taïko, CM</footer>',
+    avis3: 'Auto dark mode is a real plus for night visitors. <footer class="avis-footer">— Andy, dev</footer>',
+    contactez: 'contact me',
+    formName: 'Full name',
+    formEmail: 'Email address',
+    formMessage: 'Your message',
+    formBtn: 'Send',
+    infoForm: 'The information collected via this form is solely intended to respond to your request. For more information, see the privacy policy.'
+  }
+};
+
+function setLang(lang) {
+  // Traduction dynamique
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) {
+      el.innerHTML = translations[lang][key]; // innerHTML pour les textes avec <footer>
+    }
+  });
+
+  // Menu navigation
+  const navLinks = document.querySelectorAll('.nav a');
+  if (navLinks.length >= 4) {
+    navLinks[0].childNodes[1].nodeValue = translations[lang].accueil;
+    navLinks[1].textContent = translations[lang].services;
+    navLinks[2].textContent = translations[lang].portfolio;
+    navLinks[3].textContent = translations[lang].contact;
+  }
+
+  // Title
+  document.title = translations[lang].heroTitle;
+
+  // Hero subtitle
+  const heroSubtitle = document.querySelector('.lead');
+  if (heroSubtitle) heroSubtitle.textContent = translations[lang].heroSubtitle;
+
+  // Formulaire
+  const nameLabel = document.querySelector('label[for="name"]');
+  if (nameLabel) nameLabel.textContent = translations[lang].formName;
+  const emailLabel = document.querySelector('label[for="email"]');
+  if (emailLabel) emailLabel.textContent = translations[lang].formEmail;
+  const messageLabel = document.querySelector('label[for="message"]');
+  if (messageLabel) messageLabel.textContent = translations[lang].formMessage;
+  const formBtn = document.querySelector('#contactForm button[type="submit"]');
+  if (formBtn) formBtn.textContent = translations[lang].formBtn;
+
+  // Sauvegarde
+  localStorage.setItem('lang', lang);
+
+  // Mise à jour des boutons
+  updateLangButtonDisplay(lang);
+}
+
+function updateLangButtonDisplay(currentLang) {
+  const btnFR = document.querySelector('.lang-btn-fr');
+  const btnEN = document.querySelector('.lang-btn-en');
+
+  if (!btnFR || !btnEN) return;
+
+  if (currentLang === 'fr') {
+    btnFR.style.display = "none";     // Masque FR
+    btnEN.style.display = "inline-block"; // Affiche EN
+  } else {
+    btnFR.style.display = "inline-block"; // Affiche FR
+    btnEN.style.display = "none";     // Masque EN
+  }
+}
+
+function detectDefaultLang() {
+  const browserLang = navigator.language || navigator.userLanguage;
+  return browserLang.startsWith('fr') ? 'fr' : 'en';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnFR = document.querySelector('.lang-btn-fr');
+  const btnEN = document.querySelector('.lang-btn-en');
+
+  if (btnFR) {
+    btnFR.addEventListener('click', () => setLang('fr'));
+  }
+  if (btnEN) {
+    btnEN.addEventListener('click', () => setLang('en'));
+  }
+
+  const savedLang = localStorage.getItem('lang') || detectDefaultLang();
+  setLang(savedLang);
 });
