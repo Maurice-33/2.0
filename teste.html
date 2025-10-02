@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Vitrine Animé</title>
+  <style>
+    /* ======================== RESET ======================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ======================== NAVBAR ======================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(0,0,0,0.8);
+      padding: 10px 40px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffda79;
+    }
+
+    /* ======================== HERO ======================== */
+    header {
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      font-size: 3em;
+      animation: slideDown 2s ease;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ======================== CARDS ======================== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 100px 60px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    }
+
+    /* ======================== TIMELINE ======================== */
+    .timeline {
+      position: relative;
+      margin: 80px auto;
+      padding: 20px;
+      width: 80%;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #764ba2;
+      transform: translateX(-50%);
+    }
+    .event {
+      position: relative;
+      width: 45%;
+      padding: 20px;
+      background: white;
+      margin: 30px 0;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    .event.left { left: 0; }
+    .event.right { left: 55%; }
+    .event.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======================== BOUTON ANIMÉ ======================== */
+    .btn {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 15px 30px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn span.ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      background: rgba(255,255,255,0.7);
+    }
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ======================== FADE-IN AU SCROLL ======================== */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+      padding: 60px;
+      text-align: center;
+    }
+    .fade-section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======================== PARALLAX GALLERY ======================== */
+    .parallax-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 80px;
+      background: #222;
+    }
+    .parallax-gallery .img-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    .parallax-gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">LOGO</div>
+    <div class="links">
+      <a href="#">Accueil</a>
+      <a href="#cards">Services</a>
+      <a href="#timeline">Parcours</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <h1>Bienvenue sur mon site vitrine</h1>
+    <p>Un site plein d'animations modernes ✨</p>
+  </header>
+
+  <!-- CARDS -->
+  <section id="cards" class="cards">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="timeline">
+    <div class="event left">Événement 1</div>
+    <div class="event right">Événement 2</div>
+    <div class="event left">Événement 3</div>
+    <div class="event right">Événement 4</div>
+  </section>
+
+  <!-- GALLERY PARALLAX -->
+  <section id="gallery" class="parallax-gallery">
+    <div class="img-container"><img src="https://picsum.photos/400/300?1" alt="Image 1"></div>
+    <div class="img-container"><img src="https://picsum.photos/400/300?2" alt="Image 2"></div>
+    <div class="img-container"><img src="https://picsum.photos/400/300?3" alt="Image 3"></div>
+    <div class="img-container"><img src="https://picsum.photos/400/300?4" alt="Image 4"></div>
+  </section>
+
+  <!-- BOUTON -->
+  <div style="text-align:center;">
+    <button class="btn">Clique-moi</button>
+  </div>
+
+  <!-- SECTION FADE -->
+  <section id="contact" class="fade-section">
+    <h2>Section avec fade-in</h2>
+    <p>Cette section apparaît au scroll avec un effet fluide.</p>
+  </section>
+
+  <script>
+    /* ======================== TIMELINE ANIMATION ======================== */
+    const events = document.querySelectorAll('.event');
+    const fadeSections = document.querySelectorAll('.fade-section');
+
+    function handleScroll() {
+      const triggerBottom = window.innerHeight * 0.8;
+      events.forEach(event => {
+        const boxTop = event.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) event.classList.add('show');
+      });
+      fadeSections.forEach(section => {
+        const boxTop = section.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) section.classList.add('show');
+      });
+    }
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    /* ======================== BOUTON RIPPLE ======================== */
+    const button = document.querySelector('.btn');
+    button.addEventListener('click', function(e) {
+      const circle = document.createElement('span');
+      circle.classList.add('ripple');
+      const rect = this.getBoundingClientRect();
+      circle.style.left = (e.clientX - rect.left) + 'px';
+      circle.style.top = (e.clientY - rect.top) + 'px';
+      this.appendChild(circle);
+      setTimeout(() => circle.remove(), 600);
+    });
+
+    /* ======================== NAVBAR SCROLL ======================== */
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    /* ======================== PARALLAX GALLERY ======================== */
+    const containers = document.querySelectorAll('.img-container');
+    containers.forEach(container => {
+      const img = container.querySelector('img');
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const moveX = (x / rect.width - 0.5) * 30;
+        const moveY = (y / rect.height - 0.5) * 30;
+        img.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+      });
+      container.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1) translate(0,0)';
+      });
+    });
+  </script>
+</body>
+</html>
